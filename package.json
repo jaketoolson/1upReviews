@@ -1,0 +1,51 @@
+{
+  "name" : "OneUpReviews",
+  "version" : "0.0.1",
+  "private": true,
+  "scripts": {
+    "build": "./node_modules/webpack/bin/webpack.js --config webpack.config.js",
+    "build:prod": "npm run build -- -p",
+    "watch": "npm run build -- --watch --watch-poll"
+  },
+  "dependencies": {
+    "axios": "^0.17",
+    "bootstrap": "^4.0.0",
+    "font-awesome": "^4.7.0",
+    "icheck": "^1.0.2",
+    "jquery": "^3.2",
+    "jquery-validation": "^1.17.0",
+    "lodash": "^4.17.4",
+    "masonry-layout": "^4.2.1",
+    "moment": "2.19.3",
+    "moment-timezone": "0.4.1",
+    "popper.js": "^1.12.9",
+    "ssri": "^5.2.4",
+    "uglifyjs-webpack-plugin": "^1.0.0-beta.3",
+    "vue": "^2.5.8",
+    "vue-infinite-loading": "^2.2.3",
+    "vue-multiselect": "^2.0.8",
+    "vue-spinner": "^1.0.3"
+  },
+  "devDependencies": {
+    "ajv": "6.1.1",
+    "babel-core": "6.26.0",
+    "babel-loader": "7.1.2",
+    "babel-preset-env": "1.6.1",
+    "babel-preset-es2015": "6.24.1",
+    "clean-webpack-plugin": "^0.1.17",
+    "copy-webpack-plugin": "^4.2.3",
+    "css-loader": "0.28.9",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "1.1.6",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.6",
+    "style-loader": "0.20.2",
+    "vue-loader": "14.1.1",
+    "vue-template-compiler": "2.5.13",
+    "webpack": "^3.11.0",
+    "webpack-assets-manifest": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  }
+}
