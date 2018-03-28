@@ -1,6 +1,6 @@
 {
-  "name" : "OneUpReviews",
-  "version" : "0.0.1",
+  "name": "OneUpReviews",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "build": "./node_modules/webpack/bin/webpack.js --config webpack.config.js",
