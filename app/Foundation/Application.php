@@ -15,4 +15,19 @@ class Application extends BaseApplication
     {
         return self::APP_VERSION;
     }
+
+    public function isProductionEnvironment(): bool
+    {
+        return $this->environment() === 'production';
+    }
+
+    public function isNotProductionEnvironment(): bool
+    {
+        return !$this->isProductionEnvironment();
+    }
+
+    public function isLocalEnvironment(): bool
+    {
+        return $this->environment() === 'local';
+    }
 }
