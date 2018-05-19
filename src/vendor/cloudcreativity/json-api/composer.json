@@ -1,0 +1,58 @@
+{
+    "name": "cloudcreativity/json-api",
+    "description": "Framework agnostic JSON API serialization and deserialization.",
+    "keywords": [
+        "jsonapi.org",
+        "json-api",
+        "jsonapi",
+        "cloudcreativity",
+        "json",
+        "api"
+    ],
+    "homepage": "https://github.com/cloudcreativity/json-api",
+    "support": {
+        "issues": "https://github.com/cloudcreativity/json-api/issues"
+    },
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Cloud Creativity Ltd",
+            "email": "info@cloudcreativity.co.uk"
+        }
+    ],
+    "require": {
+        "php": "^5.6.4|^7.0",
+        "cloudcreativity/utils-object": "^1.0",
+        "neomerx/json-api": "^1.0.3"
+    },
+    "require-dev": {
+        "guzzlehttp/guzzle": "^6.3",
+        "phpunit/phpunit": "^5.7"
+    },
+    "suggest": {
+        "guzzlehttp/guzzle": "Guzzle v6 required to use the JSON API client."
+    },
+    "autoload": {
+        "psr-4": {
+            "CloudCreativity\\JsonApi\\": "src/"
+        },
+        "files": [
+            "helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CloudCreativity\\JsonApi\\": "tests/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-develop": "0.12.x-dev"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
+    }
+}

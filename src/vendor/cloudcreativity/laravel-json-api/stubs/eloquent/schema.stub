@@ -1,0 +1,21 @@
+<?php
+
+namespace DummyNamespace;
+
+use CloudCreativity\LaravelJsonApi\Schema\EloquentSchema;
+
+class Schema extends EloquentSchema
+{
+
+    /**
+     * @var string
+     */
+    protected $resourceType = 'dummyResourceType';
+
+    /**
+     * @var array|null
+     */
+    protected $attributes = null;
+
+}
+

@@ -1,0 +1,35 @@
+version: '2'
+services:
+
+  db:
+    image: mysql:5.6
+    ports:
+      - 3306:3306
+    volumes:
+      - dbdata:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
+  php:
+    build:
+      context: ./images/
+      dockerfile: php.dockerfile
+    working_dir: /var/www/html
+    volumes:
+      - ./src/:/var/www/html
+    depends_on:
+    - db
+
+  nginx:
+    image: nginx:latest
+    working_dir: /var/www/html/public
+    ports:
+      - 80:80
+    volumes:
+      - ./images/vhost.conf:/etc/nginx/conf.d/default.conf
+      - ./src/:/var/www/html
+    depends_on:
+    - php
+
+volumes:
+  dbdata:
