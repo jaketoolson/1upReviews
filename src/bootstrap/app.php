@@ -14,7 +14,7 @@ $app->singleton(
 
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
-    OneUpReviews\Exceptions\Handler::class
+    OneUpReviews\Foundation\Exceptions\Handler::class
 );
 
 return $app;

@@ -29,7 +29,7 @@ return array(
     'Symfony\\Component\\ClassLoader\\' => array($vendorDir . '/symfony/class-loader'),
     'Symfony\\Bridge\\PsrHttpMessage\\' => array($vendorDir . '/symfony/psr-http-message-bridge'),
     'Ramsey\\Uuid\\' => array($vendorDir . '/ramsey/uuid/src'),
-    'Psy\\' => array($vendorDir . '/psy/psysh/src/Psy'),
+    'Psy\\' => array($vendorDir . '/psy/psysh/src'),
     'Psr\\SimpleCache\\' => array($vendorDir . '/psr/simple-cache/src'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src'),
@@ -57,6 +57,6 @@ return array(
     'CloudCreativity\\LaravelJsonApi\\' => array($vendorDir . '/cloudcreativity/laravel-json-api/src'),
     'CloudCreativity\\JsonApi\\Testing\\' => array($vendorDir . '/cloudcreativity/json-api-testing/src'),
     'CloudCreativity\\JsonApi\\' => array($vendorDir . '/cloudcreativity/json-api/src'),
-    'Carbon\\' => array($vendorDir . '/nesbot/carbon/src/Carbon'),
     'Barryvdh\\LaravelIdeHelper\\' => array($vendorDir . '/barryvdh/laravel-ide-helper/src'),
+    '' => array($vendorDir . '/nesbot/carbon/src'),
 );

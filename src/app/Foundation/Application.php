@@ -9,11 +9,11 @@ use Illuminate\Foundation\Application as BaseApplication;
 
 class Application extends BaseApplication
 {
-    public const APP_VERSION = '0.0.1';
+    public const ONEUP_VERSION = '0.0.1';
 
     public static function getAppVersion(): string
     {
-        return self::APP_VERSION;
+        return self::ONEUP_VERSION;
     }
 
     public function isProductionEnvironment(): bool

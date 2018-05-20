@@ -8,6 +8,9 @@ namespace OneUpReviews\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @method BaseEloquentBuilder applyCriteria(CriteriaInterface $criteria)
+ */
 class BaseEloquentModel extends Model
 {
     public function newEloquentBuilder($query): BaseEloquentBuilder

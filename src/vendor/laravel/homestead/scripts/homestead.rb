@@ -205,7 +205,12 @@ class Homestead
 
                 type = site["type"] ||= "laravel"
 
-                if (type == "symfony")
+                case type
+                when "apigility"
+                    type = "zf"
+                when "expressive"
+                    type = "zf"
+                when "symfony"
                     type = "symfony2"
                 end
 
@@ -317,10 +322,24 @@ class Homestead
             end
         end
 
+        # Install Minio If Necessary
+        if settings.has_key?("minio") && settings["minio"]
+            config.vm.provision "shell" do |s|
+                s.path = scriptDir + "/install-minio.sh"
+            end
+        end
+
         # Install MongoDB If Necessary
         if settings.has_key?("mongodb") && settings["mongodb"]
             config.vm.provision "shell" do |s|
                 s.path = scriptDir + "/install-mongo.sh"
+            end
+        end
+
+        # Install Neo4j If Necessary
+        if settings.has_key?("neo4j") && settings["neo4j"]
+            config.vm.provision "shell" do |s|
+                s.path = scriptDir + "/install-neo4j.sh"
             end
         end
 

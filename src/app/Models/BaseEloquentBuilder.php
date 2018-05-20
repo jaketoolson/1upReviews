@@ -5,9 +5,7 @@
 
 namespace OneUpReviews\Models;
 
-use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Query\Builder as QueryBuilder;
 
 class BaseEloquentBuilder extends Builder
 {
@@ -16,14 +14,12 @@ class BaseEloquentBuilder extends Builder
      */
     protected $criteria = [];
 
-    public function applyCriteria(Collection $criteria): QueryBuilder
+    public function applyCriteria(CriteriaInterface $criteria): BaseEloquentBuilder
     {
-        $criteria->each(function (CriteriaInterface $criterion) {
-            $this->criteria[] = $criterion;
-            $this->setQuery($criterion->apply($this->getQuery()));
-        });
+        $this->criteria[] = $criteria;
+        $criteria->apply($this);
 
-        return $this->getQuery();
+        return $this;
     }
 
     public function getCriteria(): array
