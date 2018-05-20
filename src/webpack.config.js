@@ -6,7 +6,7 @@ const path = require('path');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const assetsDir = __dirname +'/resources/assets/';
+const assetsDir = __dirname +'/client/';
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
@@ -22,7 +22,6 @@ module.exports = {
             __dirname + '/node_modules/vue-multiselect/dist/vue-multiselect.min.css'
         ],
         'css/app' : [
-            assetsDir + 'css/owl.carousel.min.css',
             assetsDir + 'css/style.css',
             assetsDir + 'css/custom.css'
         ]
@@ -37,10 +36,6 @@ module.exports = {
             {
                 test: /\.(js|es6)$/,
                 loader: 'babel-loader',
-                exclude: /node_modules/,
-                options: {
-                    presets: ["es2015"]
-                }
             },
             {
                 test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
@@ -98,7 +93,8 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.vue', '.json'],
         alias: {
-            'vue': 'vue/dist/vue.js'
+            'vue': 'vue/dist/vue.js',
+            '@': path.resolve('client/js'),
         }
     },
     node: {
