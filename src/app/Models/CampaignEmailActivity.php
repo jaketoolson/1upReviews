@@ -5,18 +5,16 @@
 
 namespace OneUpReviews\Models;
 
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int email_id
- * @property string raw_json
  * @property string type
  * @property string activity_date
- *
- * @property Email email
+ * @property string raw_json
  */
-class EmailActivity extends BaseEloquentModel
+class CampaignEmailActivity extends BaseEloquentModel
 {
     use SoftDeletes, Uuidable;
 
@@ -29,7 +27,7 @@ class EmailActivity extends BaseEloquentModel
         self::TYPE_DELIVERED
     ];
 
-    protected $table = 'email_activity';
+    protected $table = 'campaign_email_activities';
 
     protected $dates = [
         'created_at',

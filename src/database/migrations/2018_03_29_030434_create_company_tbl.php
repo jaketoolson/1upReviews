@@ -1,11 +1,13 @@
 <?php
+/**
+ * Copyright (c) 2018. Jake Toolson
+ */
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use OneUpReviews\Models\EmailActivity;
 
-class CreateEmailActivityTbl extends Migration
+class CreateCompanyTbl extends Migration
 {
     /**
      * Run the migrations.
@@ -14,15 +16,18 @@ class CreateEmailActivityTbl extends Migration
      */
     public function up()
     {
-        Schema::create('email_activity', function (Blueprint $table){
+        Schema::create('companies', function (Blueprint $table){
             $table->bigIncrements('id');
             $table->string('uuid');
-            $table->bigInteger('email_id')->unsigned();
-            $table->text('raw_json');
-            $table->enum('type', [EmailActivity::TYPES])->default(null)->nullable();
-            $table->dateTime('resent_at')->nullable()->default(null);
+            $table->string('name');
             $table->timestamps();
             $table->softDeletes();
+        });
+
+        Schema::create('company_user', function(Blueprint $table){
+            $table->bigIncrements('id');
+            $table->bigInteger('company_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
         });
     }
 
@@ -33,6 +38,7 @@ class CreateEmailActivityTbl extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('email_activity');
+        Schema::dropIfExists('companies');
+        Schema::dropIfExists('company_user');
     }
 }

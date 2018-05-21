@@ -12,19 +12,11 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 module.exports = {
     entry: {
         'js/app' : [
-            assetsDir + 'js/app.js'
+            assetsDir + 'main.js'
         ],
-        'js/theme' : [
-            assetsDir + 'js/theme.js'
+        'js/vendor' : [
+            assetsDir + 'vendor.js'
         ],
-        'css/vendor' : [
-            assetsDir + 'scss/vendor.scss',
-            __dirname + '/node_modules/vue-multiselect/dist/vue-multiselect.min.css'
-        ],
-        'css/app' : [
-            assetsDir + 'css/style.css',
-            assetsDir + 'css/custom.css'
-        ]
     },
     output: {
         path: path.join( __dirname, 'public', 'build'),
@@ -75,7 +67,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new UglifyJSPlugin(),
+        new UglifyJSPlugin(), // auto minify
         new WebpackAssetsManifest({
             output: 'rev-manifest.json',
         }),
@@ -94,7 +86,7 @@ module.exports = {
         extensions: ['.js', '.vue', '.json'],
         alias: {
             'vue': 'vue/dist/vue.js',
-            '@': path.resolve('client/js'),
+            '@': path.resolve('client'),
         }
     },
     node: {

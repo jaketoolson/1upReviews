@@ -16,7 +16,7 @@ class CreateEmailInteractionTbl extends Migration
         Schema::create('email_interaction', function (Blueprint $table){
             $table->bigIncrements('id');
             $table->string('uuid');
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('company_id')->unsigned();
             $table->bigInteger('email_id')->unsigned();
             $table->bigInteger('social_focus_id')->unsigned();
             $table->text('focus_logged')->nullable()->default(null);

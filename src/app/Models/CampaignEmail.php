@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
+ * @property int id
+ * @property int campaign_id
  * @property int user_id
  * @property int client_id
  * @property int sent_by
@@ -28,21 +30,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Client $client
  * @property Collection $activities
  */
-class Email extends BaseEloquentModel
+class CampaignEmail extends BaseEloquentModel
 {
     use SoftDeletes, Uuidable;
 
-    protected $table = 'emails';
-
-    protected $dates = [
-        'created_at',
-        'updated_at',
-        'deleted_at',
-        'resent_at',
-    ];
+    protected $table = 'campaign_emails';
 
     protected $fillable = [
         'uuid',
+        'campaign_id',
         'user_id',
         'client_id',
         'sent_by',
@@ -58,6 +54,14 @@ class Email extends BaseEloquentModel
         'is_opened',
         'resent_at'
     ];
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+        'resent_at',
+    ];
+
 
     protected $hidden = [
         'id',
@@ -88,23 +92,23 @@ class Email extends BaseEloquentModel
 
     public function isDelivered(): bool
     {
-        return $this->activities->filter(function (EmailActivity $activity) {
-            return $activity->isDelivered();
-        })->count() >= 1;
+        return $this->activities->filter(function (CampaignEmailActivity $activity) {
+                return $activity->isDelivered();
+            })->count() >= 1;
     }
 
     public function isOpened(): bool
     {
-        return $this->activities->filter(function (EmailActivity $activity) {
-            return $activity->isOpened();
-        })->count() >= 1;
+        return $this->activities->filter(function (CampaignEmailActivity $activity) {
+                return $activity->isOpened();
+            })->count() >= 1;
     }
 
     public function isBounced(): bool
     {
-        return $this->activities->filter(function (EmailActivity $activity) {
-            return $activity->isBounced();
-        })->count() >= 1;
+        return $this->activities->filter(function (CampaignEmailActivity $activity) {
+                return $activity->isBounced();
+            })->count() >= 1;
     }
 
     public function getOriginMessageId(): string

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEmailTbl extends Migration
+class CreateCampaignEmailTbl extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,20 @@ class CreateEmailTbl extends Migration
      */
     public function up()
     {
-        Schema::create('email', function (Blueprint $table){
+        Schema::create('campaigns', function (Blueprint $table){
             $table->bigIncrements('id');
             $table->string('uuid');
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('company_id')->unsigned();
+            $table->string('name');
+            $table->string('description')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
+        Schema::create('campaign_emails', function (Blueprint $table){
+            $table->bigIncrements('id');
+            $table->string('uuid');
+            $table->bigInteger('company_id')->unsigned();
             $table->bigInteger('client_id')->unsigned();
             $table->bigInteger('sent_by')->unsigned();
             $table->string('recipient_email');
@@ -42,6 +52,7 @@ class CreateEmailTbl extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('email');
+        Schema::dropIfExists('campaign_emails');
+        Schema::dropIfExists('campaigns');
     }
 }

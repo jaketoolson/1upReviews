@@ -49,7 +49,7 @@ class Client extends BaseEloquentModel
 
     public function emails(): HasMany
     {
-        return $this->hasMany(Email::class, 'client_id')->orderBy('created_at', 'desc');
+        return $this->hasMany(CampaignEmail::class, 'client_id')->orderBy('created_at', 'desc');
     }
 
     public function getName(): string
@@ -62,7 +62,7 @@ class Client extends BaseEloquentModel
         return $this->getName();
     }
 
-    public function getLastEmail(): ?Email
+    public function getLastEmail(): ?CampaignEmail
     {
         return $this->emails->first();
     }
