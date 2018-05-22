@@ -14,6 +14,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * @property int id
@@ -21,6 +22,7 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
  * @property string last_name
  * @property string email
  * @property string password
+ * @property bool is_admin
  *
  * @property Collection|Company[] companies
  */
@@ -29,7 +31,7 @@ class User extends BaseEloquentModel implements
     AuthorizableContract,
     CanResetPasswordContract
 {
-    use Authenticatable, Authorizable, CanResetPassword, Notifiable, Uuidable;
+    use Authenticatable, Authorizable, CanResetPassword, HasRoles, Notifiable, Uuidable;
 
     protected $fillable = [
         'uuid',
@@ -37,6 +39,9 @@ class User extends BaseEloquentModel implements
         'last_name',
         'email',
         'password',
+        'created_by',
+        'is_admin',
+        'force_password_change',
     ];
 
     protected $hidden = [
@@ -52,5 +57,10 @@ class User extends BaseEloquentModel implements
     public function company(): ?Company
     {
         return $this->companies()->where('user_id', '=', $this->id)->first();
+    }
+
+    public function getName(): string
+    {
+        return $this->first_name . ' ' . $this->last_name;
     }
 }
