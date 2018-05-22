@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
+ * @property int id
  * @property int email_id
  * @property string type
  * @property string activity_date
@@ -51,7 +52,7 @@ class CampaignEmailActivity extends BaseEloquentModel
 
     public function email(): BelongsTo
     {
-        return $this->belongsTo(Email::class, 'email_id');
+        return $this->belongsTo(CampaignEmail::class, 'email_id');
     }
 
     public function getRawJsonAttribute($value): ?string
