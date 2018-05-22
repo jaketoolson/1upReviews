@@ -3,8 +3,12 @@
  */
 
 import Vue from 'vue';
+import App from './containers/App.vue';
 
 new Vue({
-    el: '#app',
+    el: '#root',
     template: '<App/>',
+    components: {
+        App,
+    }
 });

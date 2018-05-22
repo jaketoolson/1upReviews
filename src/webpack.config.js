@@ -12,7 +12,7 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 module.exports = {
     entry: {
         'js/app' : [
-            assetsDir + 'main.js'
+            assetsDir + 'main.ts'
         ],
         'js/vendor' : [
             assetsDir + 'vendor.js'
@@ -25,18 +25,6 @@ module.exports = {
     },
     module: {
         rules: [
-            {
-                test: /\.(js|es6)$/,
-                loader: 'babel-loader',
-            },
-            {
-                test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-                loader: 'file-loader',
-                options: {
-                    name: 'fonts/[name].[ext]',
-                    publicPath: '/build/'
-                }
-            },
             {
                 test: /\.(png|jpg|jpeg|gif)$/,
                 loader: 'file-loader',
@@ -62,7 +50,13 @@ module.exports = {
             },
             {
                 test: /\.vue$/,
-                loader: 'vue-loader'
+                loader: 'vue-loader',
+                options: {
+                    loaders: {
+                        'scss': 'vue-style-loader!css-loader!sass-loader',
+                        'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax',
+                    }
+                }
             },
         ]
     },
@@ -83,10 +77,9 @@ module.exports = {
         ),
     ],
     resolve: {
-        extensions: ['.js', '.vue', '.json'],
+        extensions: ['.ts', '.js', '.vue', '.json'],
         alias: {
             'vue': 'vue/dist/vue.js',
-            '@': path.resolve('client'),
         }
     },
     node: {

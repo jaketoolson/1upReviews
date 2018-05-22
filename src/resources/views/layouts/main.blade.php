@@ -1,5 +1,7 @@
 @include('layouts.partials._headerhtml')
 
-@yield('content')
+<main id="root" role="main">
+    @yield('content')
+</main>
 
 @include('layouts.partials._footerhtml')
