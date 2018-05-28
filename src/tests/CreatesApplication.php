@@ -1,6 +1,6 @@
 <?php
 
-namespace OneUpReviews\Tests;
+namespace Tests;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Contracts\Console\Kernel;

@@ -5,29 +5,20 @@
 
 namespace OneUpReviews\Listeners;
 
+use OneUpReviews\Events\CampaignEmailActivityStored;
 use OneUpReviews\Libraries\Keen\Keen;
-use OneUpReviews\Events\EmailActivityStored;
 use OneUpReviews\Libraries\Keen\KeenClient;
 
 class SaveEmailEventToKeen
 {
-    /**
-     * @var KeenClient
-     */
     protected $keen;
 
-    /**
-     * @param KeenClient $keen
-     */
     public function __construct(KeenClient $keen)
     {
         $this->keen = $keen;
     }
 
-    /**
-     * @param EmailActivityStored $event
-     */
-    public function handle(EmailActivityStored $event)
+    public function handle(CampaignEmailActivityStored $event)
     {
         $emailActivity = $event->getEmailActivity()->fresh([
             'email',

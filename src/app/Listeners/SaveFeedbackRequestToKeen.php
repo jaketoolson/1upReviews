@@ -12,22 +12,13 @@ use OneUpReviews\Libraries\Keen\KeenClient;
 
 class SaveFeedbackRequestToKeen
 {
-    /**
-     * @var KeenClient
-     */
     protected $keen;
 
-    /**
-     * @param KeenClient $keen
-     */
     public function __construct(KeenClient $keen)
     {
         $this->keen = $keen;
     }
 
-    /**
-     * @param EmailFeedbackRequestSentToClient $event
-     */
     public function handle(EmailFeedbackRequestSentToClient $event)
     {
         $email = $event->getEmail()->fresh([

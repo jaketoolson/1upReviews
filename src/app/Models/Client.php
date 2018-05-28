@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null business_name
  * @property string email_address
  * @property string name
+ * @property string full_name
  *
  * @property Collection emails
  */
@@ -27,11 +28,11 @@ class Client extends BaseEloquentModel
     protected $table = 'clients';
 
     protected $with = [
-        'emails'
+        'emails',
     ];
 
     protected $appends = [
-        'name'
+        'full_name',
     ];
 
     protected $fillable = [
@@ -40,12 +41,12 @@ class Client extends BaseEloquentModel
         'first_name',
         'last_name',
         'business_name',
-        'email_address'
+        'email_address',
     ];
 
     protected $hidden = [
         'id',
-        'user_id'
+        'user_id',
     ];
 
     public function emails(): HasMany
@@ -53,14 +54,9 @@ class Client extends BaseEloquentModel
         return $this->hasMany(CampaignEmail::class, 'client_id')->orderBy('created_at', 'desc');
     }
 
-    public function getName(): string
+    public function getFullNameAttribute(): string
     {
         return $this->first_name . ' ' . $this->last_name;
-    }
-
-    public function getNameAttribute(): string
-    {
-        return $this->getName();
     }
 
     public function getLastEmail(): ?CampaignEmail

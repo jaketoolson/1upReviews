@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int id
- * @property int user_id
  * @property string name
  */
 class Company extends BaseEloquentModel

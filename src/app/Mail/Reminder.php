@@ -5,9 +5,11 @@
 
 namespace OneUpReviews\Mail;
 
-class Reminder extends BaseEmailAbstract
+use Illuminate\Mail\Mailable;
+
+class Reminder extends BaseMailerAbstract
 {
-    public function build()
+    public function build(): Mailable
     {
         $this->subject('test');
 

@@ -34,7 +34,7 @@ class CampaignEmailActivity extends BaseEloquentModel
         'created_at',
         'updated_at',
         'activity_date',
-        'deleted_at'
+        'deleted_at',
     ];
 
     protected $fillable = [
@@ -47,7 +47,7 @@ class CampaignEmailActivity extends BaseEloquentModel
 
     protected $hidden = [
         'id',
-        'email_id'
+        'email_id',
     ];
 
     public function email(): BelongsTo

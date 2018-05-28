@@ -5,33 +5,30 @@
 
 namespace OneUpReviews\Listeners;
 
-use OneUpReviews\Services\EmailService;
-use OneUpReviews\Events\EmailActivityStored;
+use OneUpReviews\Events\CampaignEmailActivityStored;
+use OneUpReviews\Services\CampaignEmailService;
 
 class FlagEmailActivity
 {
     /**
-     * @var EmailService
+     * @var CampaignEmailService
      */
     protected $emailService;
 
     /**
-     * @param EmailService $emailService
+     * @param CampaignEmailService $emailService
      */
-    public function __construct(EmailService $emailService)
+    public function __construct(CampaignEmailService $emailService)
     {
         $this->emailService = $emailService;
     }
 
-    /**
-     * @param EmailActivityStored $event
-     */
-    public function handle(EmailActivityStored $event)
+    public function handle(CampaignEmailActivityStored $event): void
     {
-        $emailActivity = $event->getEmailActivity();
+        $emailActivity = $event->getCampaignEmailActivity();
 
-        $emailActivity->getEmail()->update([
-            'is_' . $emailActivity->getType() => 1
+        $emailActivity->email()->update([
+            'is_' . $emailActivity->type => 1
         ]);
     }
 }

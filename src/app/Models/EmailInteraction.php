@@ -26,14 +26,14 @@ class EmailInteraction extends BaseEloquentModel
         'user_id',
         'email_id',
         'social_focus_id',
-        'focus_logged'
+        'focus_logged',
     ];
 
     protected $hidden = [
         'id',
         'user_id',
         'email_id',
-        'social_focus_id'
+        'social_focus_id',
     ];
 
     public static function factory(

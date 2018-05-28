@@ -7,26 +7,23 @@ namespace OneUpReviews\Listeners;
 
 use Swift_Events_SendEvent;
 use Swift_Events_EventListener;
-use OneUpReviews\Services\EmailService;
+use OneUpReviews\Services\CampaignEmailService;
 use OneUpReviews\Events\EmailFeedbackRequestSentToClient;
 
 class EmailSent implements Swift_Events_EventListener
 {
     /**
-     * @var EmailService
+     * @var CampaignEmailService
      */
     protected $emailService;
 
     public function __construct()
     {
         // Can't inject :(
-        $this->emailService = app(EmailService::class);
+        $this->emailService = app(CampaignEmailService::class);
     }
 
-    /**
-     * @param Swift_Events_SendEvent $message
-     */
-    public function sendPerformed(Swift_Events_SendEvent $message)
+    public function sendPerformed(Swift_Events_SendEvent $message): void
     {
         $headers = $message->getMessage()->getHeaders();
         $swiftMessageId = $headers->get('Message-ID')->getId();

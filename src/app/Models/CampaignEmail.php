@@ -52,7 +52,7 @@ class CampaignEmail extends BaseEloquentModel
         'is_delivered',
         'is_bounced',
         'is_opened',
-        'resent_at'
+        'resent_at',
     ];
 
     protected $dates = [
@@ -67,7 +67,7 @@ class CampaignEmail extends BaseEloquentModel
         'id',
         'user_id',
         'client_id',
-        'sent_by'
+        'sent_by',
     ];
 
     public function client(): BelongsTo

@@ -12,9 +12,6 @@ use OneUpReviews\Mail\WelcomeTenantInvitedUser;
 
 class SendEmailToNewUserForTenant
 {
-    /**
-     * @param TenantAddedUserEvent $event
-     */
     public function handle(TenantAddedUserEvent $event)
     {
         Mail::to($event->getNewUser()->getEmail())->send(new WelcomeTenantInvitedUser(

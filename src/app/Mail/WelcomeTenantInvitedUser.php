@@ -39,7 +39,7 @@ class WelcomeTenantInvitedUser extends Mailable
         $this->password = $password;
     }
 
-    public function build()
+    public function build(): Mailable
     {
         $this->subject(trans('emails.welcome.subject'));
 

@@ -23,6 +23,8 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string email
  * @property string password
  * @property bool is_admin
+ * @property bool is_superadmin
+ * @property string full_name
  *
  * @property Collection|Company[] companies
  */
@@ -49,6 +51,10 @@ class User extends BaseEloquentModel implements
         'remember_token',
     ];
 
+    protected $appends = [
+        'full_name',
+    ];
+
     public function companies(): BelongsToMany
     {
         return $this->belongsToMany(Company::class, 'company_user', 'user_id');
@@ -59,8 +65,13 @@ class User extends BaseEloquentModel implements
         return $this->companies()->where('user_id', '=', $this->id)->first();
     }
 
-    public function getName(): string
+    public function getFullNameAttribute(): string
     {
         return $this->first_name . ' ' . $this->last_name;
+    }
+
+    public function isSuperAdmin(): bool
+    {
+        return $this->is_superadmin;
     }
 }

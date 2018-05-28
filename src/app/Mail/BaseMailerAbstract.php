@@ -6,41 +6,32 @@
 namespace OneUpReviews\Mail;
 
 use Swift_Message;
-use OneUpReviews\Models\Email;
+use OneUpReviews\Models\CampaignEmail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use OneUpReviews\Listeners\EmailSent;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Queue\SerializesModels;
 
-abstract class BaseEmailAbstract extends Mailable
+abstract class BaseMailerAbstract extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * @var Email
-     */
     protected $email;
 
-    /**
-     * @param Email $email
-     */
-    public function __construct(Email $email)
+    public function __construct(CampaignEmail $email)
     {
         Mail::getSwiftMailer()->registerPlugin(new EmailSent());
 
         $this->email = $email;
 
-        $this->withSwiftMessage(function(Swift_Message $swiftmessage) use ($email) {
+        $this->withSwiftMessage(function (Swift_Message $swiftmessage) use ($email) {
             $email->origin_message_id = $swiftmessage->getId();
             $email->save();
         });
     }
 
-    /**
-     * @return void
-     */
-    public abstract function build();
+    abstract public function build(): Mailable;
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
