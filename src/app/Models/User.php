@@ -15,6 +15,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Spatie\Permission\Traits\HasRoles;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
  * @property int id
@@ -31,7 +32,8 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends BaseEloquentModel implements
     AuthenticatableContract,
     AuthorizableContract,
-    CanResetPasswordContract
+    CanResetPasswordContract,
+    JWTSubject
 {
     use Authenticatable, Authorizable, CanResetPassword, HasRoles, Notifiable, Uuidable;
 
@@ -73,5 +75,15 @@ class User extends BaseEloquentModel implements
     public function isSuperAdmin(): bool
     {
         return $this->is_superadmin;
+    }
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims(): array
+    {
+        return [];
     }
 }
