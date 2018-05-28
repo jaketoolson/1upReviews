@@ -12,7 +12,7 @@ use Illuminate\Http\UploadedFile;
 
 class ImportedFileHandler implements Countable, IteratorAggregate
 {
-    private $results = [
+    private static $results = [
         'skipped' => [],
         'inserted' => [],
         'duplicated' => []
@@ -25,37 +25,37 @@ class ImportedFileHandler implements Countable, IteratorAggregate
 
     public function getSkippedRecords(): array
     {
-        return $this->results['skipped'];
+        return self::$results['skipped'];
     }
 
     public function getInsertedRecords(): array
     {
-        return $this->results['inserted'];
+        return self::$results['inserted'];
     }
 
     public function getDuplicateRecords(): array
     {
-        return $this->results['duplicated'];
+        return self::$results['duplicated'];
     }
 
     public function addInserted(array $insertedRecord): void
     {
-        $this->results['inserted'][] = $insertedRecord;
+        self::$results['inserted'][] = $insertedRecord;
     }
 
     public function addSkipped(array $skippedRecord): void
     {
-        $this->results['skipped'][] = $skippedRecord;
+        self::$results['skipped'][] = $skippedRecord;
     }
 
     public function addDuplicate(array $duplicate): void
     {
-        $this->results['duplicated'][] = $duplicate;
+        self::$results['duplicated'][] = $duplicate;
     }
 
     public function getResults(): array
     {
-        return $this->results;
+        return self::$results;
     }
 
     public function getIterator(): ArrayIterator

@@ -15,18 +15,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string activity_date
  * @property string raw_json
  */
-class CampaignEmailActivity extends BaseEloquentModel
+class CampaignEmailActivity extends BaseEloquentModel implements EmailActivityInterface
 {
     use SoftDeletes, Uuidable;
-
-    public const TYPE_BOUNCED = 'bounced';
-    public const TYPE_OPENED = 'opened';
-    public const TYPE_DELIVERED = 'delivered';
-    public const TYPES = [
-        self::TYPE_BOUNCED,
-        self::TYPE_OPENED,
-        self::TYPE_DELIVERED
-    ];
 
     protected $table = 'campaign_email_activities';
 
@@ -60,18 +51,23 @@ class CampaignEmailActivity extends BaseEloquentModel
         return json_decode($value, true);
     }
 
+    public function getEmailType(): string
+    {
+        return $this->type;
+    }
+
     public function isBounced(): bool
     {
-        return $this->type === self::TYPE_BOUNCED;
+        return $this->getEmailType() === self::TYPE_BOUNCED;
     }
 
     public function isDelivered(): bool
     {
-        return $this->type === self::TYPE_DELIVERED;
+        return $this->getEmailType() === self::TYPE_DELIVERED;
     }
 
     public function isOpened(): bool
     {
-        return $this->type === self::TYPE_OPENED;
+        return $this->getEmailType() === self::TYPE_OPENED;
     }
 }

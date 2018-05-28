@@ -33,10 +33,10 @@ abstract class BaseEloquentRepository
     /**
      * @param int $id
      * @param array $columns
-     * @return null|BaseEloquentModel
+     * @return BaseEloquentModel
      * @throws ModelNotFoundException
      */
-    public function findById(int $id, array $columns = ['*']): ?BaseEloquentModel
+    public function findById(int $id, array $columns = ['*']): BaseEloquentModel
     {
         $result = $this->newQuery()->findOrFail($id, $columns);
         $this->reset();

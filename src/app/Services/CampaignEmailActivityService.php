@@ -60,12 +60,7 @@ class CampaignEmailActivityService
         );
     }
 
-    private function createActivity(
-        int $emailId,
-        string $jsonString,
-        string $type,
-        Carbon $date
-    ): CampaignEmailActivity
+    private function createActivity(int $emailId, string $jsonString, string $type, Carbon $date): CampaignEmailActivity
     {
         $activity = CampaignEmailActivity::create([
             'email_id' => $emailId,
