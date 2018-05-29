@@ -16,7 +16,7 @@ class CreateClientTbl extends Migration
         Schema::create('clients', function (Blueprint $table){
             $table->bigIncrements('id');
             $table->string('uuid');
-            $table->bigInteger('company_id')->unsigned();
+            $table->bigInteger('tenant_id')->unsigned();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email_address');
@@ -24,6 +24,8 @@ class CreateClientTbl extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
+        DB::statement('ALTER TABLE clients AUTO_INCREMENT=1100000');
     }
 
     /**

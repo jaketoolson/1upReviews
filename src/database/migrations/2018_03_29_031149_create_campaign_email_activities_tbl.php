@@ -3,8 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use OneUpReviews\Models\CampaignEmailActivity;
-use OneUpReviews\Models\EmailActivity;
+use OneUpReviews\Models\EmailActivityInterface;
 
 class CreateCampaignEmailActivitiesTbl extends Migration
 {
@@ -20,11 +19,13 @@ class CreateCampaignEmailActivitiesTbl extends Migration
             $table->string('uuid');
             $table->bigInteger('campaign_email_id')->unsigned();
             $table->text('raw_json');
-            $table->enum('type', [CampaignEmailActivity::TYPES])->default(null)->nullable();
+            $table->enum('type', [EmailActivityInterface::TYPES])->default(null)->nullable();
             $table->dateTime('resent_at')->nullable()->default(null);
             $table->timestamps();
             $table->softDeletes();
         });
+
+        DB::statement('ALTER TABLE campaign_email_activities AUTO_INCREMENT=1100000');
     }
 
     /**

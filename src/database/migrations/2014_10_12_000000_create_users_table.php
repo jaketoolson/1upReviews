@@ -14,13 +14,26 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
+            $table->bigIncrements('id');
+            $table->binary('uuid');
+            $table->bigInteger('tenant_id', false, true)->nullable()->default(null);
+            $table->bigInteger('created_by', false, true)->nullable()->default(null);
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('email', 191)->unique();
             $table->string('password');
+            $table->tinyInteger('force_password_change')->default(0);
+            $table->boolean('is_superadmin')->default(0);
             $table->rememberToken();
             $table->timestamps();
+
+            $table->foreign('tenant_id')
+                ->references('id')
+                ->on('tenants')
+                ->onDelete('cascade');
         });
+
+        DB::statement('ALTER TABLE users AUTO_INCREMENT=1100000');
     }
 
     /**

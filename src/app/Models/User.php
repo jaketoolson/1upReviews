@@ -5,8 +5,7 @@
 
 namespace OneUpReviews\Models;
 
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -27,8 +26,6 @@ use OneUpReviews\Models\Traits\Uuidable;
  * @property bool is_admin
  * @property bool is_superadmin
  * @property string full_name
- *
- * @property Collection|Company[] companies
  */
 class User extends BaseEloquentModel implements
     AuthenticatableContract,
@@ -45,7 +42,6 @@ class User extends BaseEloquentModel implements
         'email',
         'password',
         'created_by',
-        'is_admin',
         'force_password_change',
     ];
 
@@ -58,19 +54,14 @@ class User extends BaseEloquentModel implements
         'full_name',
     ];
 
-    public function companies(): BelongsToMany
+    public function tenant(): BelongsTo
     {
-        return $this->belongsToMany(Company::class, 'company_user', 'user_id');
-    }
-
-    public function company(): ?Company
-    {
-        return $this->companies()->where('user_id', '=', $this->id)->first();
+        return $this->belongsTo(Tenant::class, 'tenant_id');
     }
 
     public function getFullNameAttribute(): string
     {
-        return $this->first_name . ' ' . $this->last_name;
+        return "{$this->first_name} {$this->last_name}";
     }
 
     public function isSuperAdmin(): bool

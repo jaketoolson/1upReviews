@@ -5,18 +5,14 @@
 
 namespace OneUpReviews\Models;
 
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OneUpReviews\Models\Traits\Uuidable;
 
 /**
  * @property int id
  * @property string name
- * @property int company_id
+ * @property int tenant_id
  * @property string|null description
- *
- * @property Collection|User[] users
  */
 class Campaign extends BaseEloquentModel
 {
@@ -27,12 +23,7 @@ class Campaign extends BaseEloquentModel
     protected $fillable = [
         'uuid',
         'name',
-        'company_id',
+        'tenant_id',
         'description',
     ];
-
-    public function users(): BelongsToMany
-    {
-        return $this->belongsToMany(User::class, 'company_user', 'company_id');
-    }
 }

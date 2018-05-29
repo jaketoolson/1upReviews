@@ -16,7 +16,7 @@ class CreateCampaignEmailTbl extends Migration
         Schema::create('campaigns', function (Blueprint $table){
             $table->bigIncrements('id');
             $table->string('uuid');
-            $table->bigInteger('company_id')->unsigned();
+            $table->bigInteger('tenant_id')->unsigned();
             $table->string('name');
             $table->string('description')->nullable();
             $table->timestamps();
@@ -26,7 +26,8 @@ class CreateCampaignEmailTbl extends Migration
         Schema::create('campaign_emails', function (Blueprint $table){
             $table->bigIncrements('id');
             $table->string('uuid');
-            $table->bigInteger('company_id')->unsigned();
+            $table->bigInteger('tenant_id', false, true);
+            $table->bigInteger('campaign_id')->unsigned();
             $table->bigInteger('client_id')->unsigned();
             $table->bigInteger('sent_by')->unsigned();
             $table->string('recipient_email');
@@ -43,6 +44,8 @@ class CreateCampaignEmailTbl extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
+        DB::statement('ALTER TABLE campaign_emails AUTO_INCREMENT=1100000');
     }
 
     /**

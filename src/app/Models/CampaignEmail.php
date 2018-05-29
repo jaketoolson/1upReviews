@@ -79,7 +79,7 @@ class CampaignEmail extends BaseEloquentModel
 
     public function activities(): HasMany
     {
-        return $this->hasMany(EmailInteraction::class, 'email_id');
+        return $this->hasMany(CampaignEmailActivity::class, 'campaign_email_id');
     }
 
     public function hasActivities(): bool
@@ -111,10 +111,5 @@ class CampaignEmail extends BaseEloquentModel
         return $this->activities->filter(function (CampaignEmailActivity $activity) {
                 return $activity->isBounced();
             })->count() >= 1;
-    }
-
-    public function getOriginMessageId(): string
-    {
-        return $this->attributes['origin_message_id'];
     }
 }
