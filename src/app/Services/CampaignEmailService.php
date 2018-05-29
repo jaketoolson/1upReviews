@@ -6,13 +6,11 @@
 namespace OneUpReviews\Services;
 
 use Exception;
-use OneUpReviews\Events\EmailSentToClient;
+use OneUpReviews\Events\CampaignEmailCreated;
 use OneUpReviews\Models\User;
 use OneUpReviews\Models\CampaignEmail;
-use OneUpReviews\Mail\Reminder;
 use OneUpReviews\Models\Client;
 use OneUpReviews\Models\Tenant;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -64,13 +62,9 @@ class CampaignEmailService
 
         $tenant->emails()->save($email);
 
-        try {
-            Mail::to($recipientEmail)->send(new Reminder($email));
+        event(new CampaignEmailCreated($email->id));
 
-            return $email;
-        } catch (Exception $e) {
-            throw $e;
-        }
+        return $email;
     }
 
     /**

@@ -6,6 +6,7 @@
     "coconutcraig/laravel-postmark": "2.2.0",
     "fideloper/proxy": "^4.0",
     "guzzlehttp/guzzle": "6.3.0",
+    "hipsterjazzbo/landlord": "dev-master",
     "laravel/cashier": "7.1.0",
     "laravel/framework": "5.6.14",
     "league/csv": "9.1.4",
@@ -26,6 +27,12 @@
     "nunomaduro/collision": "^2.0",
     "phpunit/phpunit": "^7.0"
   },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url":  "git@github.com:hfalucas/Landlord.git"
+    }
+  ],
   "autoload": {
     "classmap": [
       "database/seeds",

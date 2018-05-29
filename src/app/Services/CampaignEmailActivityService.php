@@ -36,7 +36,7 @@ class CampaignEmailActivityService
         );
     }
 
-    public function storeDelivered(DeliveredResponse $response)
+    public function storeDelivered(DeliveredResponse $response): CampaignEmailActivity
     {
         $email = $this->emailService->findWithNoGlobalScope('provider_message_id', $response->getMessageId());
 

@@ -3,7 +3,7 @@
  * Copyright (c) 2018. Jake Toolson
  */
 
-namespace OneUpReviews\Models;
+namespace OneUpReviews\Models\Traits;
 
 /**
  * @property string uuid

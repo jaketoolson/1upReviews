@@ -152,6 +152,7 @@ return [
          */
         Coconuts\Mail\PostmarkServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        HipsterJazzbo\Landlord\LandlordServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -210,7 +211,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Landlord'   => HipsterJazzbo\Landlord\Facades\Landlord::class,
     ],
 
 ];

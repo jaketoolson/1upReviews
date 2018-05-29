@@ -7,6 +7,8 @@ namespace OneUpReviews\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use OneUpReviews\Models\Traits\BelongsToTenants;
+use OneUpReviews\Models\Traits\Uuidable;
 
 /**
  * @property int id
@@ -17,7 +19,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class CampaignEmailActivity extends BaseEloquentModel implements EmailActivityInterface
 {
-    use SoftDeletes, Uuidable;
+    use BelongsToTenants, SoftDeletes, Uuidable;
 
     protected $table = 'campaign_email_activities';
 

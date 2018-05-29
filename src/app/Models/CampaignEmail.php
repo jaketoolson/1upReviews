@@ -9,11 +9,13 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use OneUpReviews\Models\Traits\BelongsToTenants;
+use OneUpReviews\Models\Traits\Uuidable;
 
 /**
  * @property int id
  * @property int campaign_id
- * @property int user_id
+ * @property int tenant_id
  * @property int client_id
  * @property int sent_by
  * @property string recipient_email
@@ -32,14 +34,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class CampaignEmail extends BaseEloquentModel
 {
-    use SoftDeletes, Uuidable;
+    use BelongsToTenants, SoftDeletes, Uuidable;
 
     protected $table = 'campaign_emails';
 
     protected $fillable = [
         'uuid',
         'campaign_id',
-        'user_id',
+        'tenant_id',
         'client_id',
         'sent_by',
         'recipient_email',
@@ -65,7 +67,7 @@ class CampaignEmail extends BaseEloquentModel
 
     protected $hidden = [
         'id',
-        'user_id',
+        'tenant_id',
         'client_id',
         'sent_by',
     ];

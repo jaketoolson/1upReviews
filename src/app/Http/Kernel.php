@@ -38,6 +38,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \OneUpReviews\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \OneUpReviews\Http\Middleware\ScopeRequestByUser::class,
         ],
 
         'api' => [

@@ -8,10 +8,11 @@ namespace OneUpReviews\Models;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use OneUpReviews\Models\Traits\Uuidable;
 
 /**
  * @property int id
- * @property int user_id
+ * @property int tenant_id
  * @property string first_name
  * @property string last_name
  * @property string|null business_name
@@ -37,7 +38,7 @@ class Client extends BaseEloquentModel
 
     protected $fillable = [
         'uuid',
-        'user_id',
+        'tenant_id',
         'first_name',
         'last_name',
         'business_name',
@@ -46,7 +47,7 @@ class Client extends BaseEloquentModel
 
     protected $hidden = [
         'id',
-        'user_id',
+        'tenant_id',
     ];
 
     public function emails(): HasMany
@@ -56,7 +57,7 @@ class Client extends BaseEloquentModel
 
     public function getFullNameAttribute(): string
     {
-        return $this->first_name . ' ' . $this->last_name;
+        return "{$this->first_name} {$this->last_name}";
     }
 
     public function getLastEmail(): ?CampaignEmail

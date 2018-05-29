@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "460927fc135a279f1c306144915264ad",
+    "content-hash": "92d87f229385ab8fa26b2dd522ff3087",
     "packages": [
         {
             "name": "coconutcraig/laravel-postmark",
@@ -639,6 +639,66 @@
                 "url"
             ],
             "time": "2017-03-20T17:10:46+00:00"
+        },
+        {
+            "name": "hipsterjazzbo/landlord",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hfalucas/Landlord.git",
+                "reference": "921d4b797d802043375dee01a4be061f62c18cc1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hfalucas/Landlord/zipball/921d4b797d802043375dee01a4be061f62c18cc1",
+                "reference": "921d4b797d802043375dee01a4be061f62c18cc1",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.2.*|5.3.*|5.4.*|5.5.*|5.6.*",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "laravel/framework": "5.2.*|5.3.*|5.4.*|5.5.*|5.6.*",
+                "mockery/mockery": "~0.9|~1.0",
+                "phpunit/phpunit": "5.5.*|6.0.*|7.0.*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "HipsterJazzbo\\Landlord\\LandlordServiceProvider"
+                    ],
+                    "aliases": {
+                        "Landlord": "HipsterJazzbo\\Landlord\\Facades\\Landlord"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "HipsterJazzbo\\Landlord\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Caleb Fidecaro",
+                    "email": "calebfidecaro@gmail.com"
+                }
+            ],
+            "description": "A simple, single database multi-tenancy solution for Laravel 5.2+",
+            "keywords": [
+                "multitenancy",
+                "multitenant",
+                "tenancy",
+                "tenant"
+            ],
+            "support": {
+                "source": "https://github.com/hfalucas/Landlord/tree/master"
+            },
+            "time": "2018-02-08T20:22:09+00:00"
         },
         {
             "name": "laravel/cashier",
@@ -5585,7 +5645,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "hipsterjazzbo/landlord": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

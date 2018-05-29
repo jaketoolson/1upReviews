@@ -6,6 +6,7 @@
 namespace OneUpReviews\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
+use OneUpReviews\Models\Traits\Uuidable;
 
 /**
  * @property int id
