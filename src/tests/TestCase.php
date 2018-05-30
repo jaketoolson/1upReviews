@@ -38,10 +38,6 @@ abstract class TestCase extends BaseTestCase
         });
     }
 
-    /**
-     * @param string $filePath
-     * @return string
-     */
     public function getJsonFromFile(string $filePath): string
     {
         return file_get_contents(base_path($filePath));
