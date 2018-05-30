@@ -5,30 +5,20 @@
 
 namespace OneUpReviews\Http\Controllers\Api\Webhooks\Postmark;
 
-use OneUpReviews\Services\PostmarkService;
-use OneUpReviews\Services\EmailActivityService;
+use OneUpReviews\Services\CampaignEmailActivityService;
 use OneUpReviews\Http\Controllers\Controller;
 
 class BaseWebhookController extends Controller
 {
-    /**
-     * @var EmailActivityService
-     */
-    protected $emailActivityService;
+    protected $campaignEmailActivityService;
 
-    /**
-     * @param EmailActivityService $emailActivityService
-     */
-    public function __construct(EmailActivityService $emailActivityService)
+    public function __construct(CampaignEmailActivityService $campaignEmailActivityService)
     {
-        $this->emailActivityService = $emailActivityService;
+        $this->campaignEmailActivityService = $campaignEmailActivityService;
     }
 
-    /**
-     * @return EmailActivityService
-     */
-    public function getEmailActivityService(): EmailActivityService
+    public function getCampaignEmailActivityService(): CampaignEmailActivityService
     {
-        return $this->emailActivityService;
+        return $this->campaignEmailActivityService;
     }
 }

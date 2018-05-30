@@ -44,10 +44,6 @@ class DeliveredResponse
      */
     private $jsonString;
 
-    /**
-     * @param string $jsonString
-     * @return DeliveredResponse
-     */
     public static function factory(string $jsonString): DeliveredResponse
     {
         $instance = new self();

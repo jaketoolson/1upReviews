@@ -64,10 +64,6 @@ class OpenedResponse
      */
     private $jsonString;
 
-    /**
-     * @param string $jsonString
-     * @return OpenedResponse
-     */
     public static function factory(string $jsonString): OpenedResponse
     {
         $instance = new self();

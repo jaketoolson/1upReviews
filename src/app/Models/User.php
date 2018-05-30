@@ -23,9 +23,10 @@ use OneUpReviews\Models\Traits\Uuidable;
  * @property string last_name
  * @property string email
  * @property string password
- * @property bool is_admin
  * @property bool is_superadmin
  * @property string full_name
+ *
+ * @property Tenant tenant
  */
 class User extends BaseEloquentModel implements
     AuthenticatableContract,
@@ -54,6 +55,10 @@ class User extends BaseEloquentModel implements
         'full_name',
     ];
 
+    protected $with = [
+        'tenant'
+    ];
+
     public function tenant(): BelongsTo
     {
         return $this->belongsTo(Tenant::class, 'tenant_id');
@@ -69,13 +74,15 @@ class User extends BaseEloquentModel implements
         return $this->is_superadmin;
     }
 
-    public function getJWTIdentifier()
+    public function getJWTIdentifier(): int
     {
         return $this->getKey();
     }
 
     public function getJWTCustomClaims(): array
     {
-        return [];
+        return [
+            'tenant_id' => $this->tenant->id
+        ];
     }
 }

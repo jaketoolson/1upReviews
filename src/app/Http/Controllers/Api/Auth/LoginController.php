@@ -41,10 +41,10 @@ class LoginController extends Controller
 
     public function me(): JsonResponse
     {
-        return $this->json(auth()->user());
+        return $this->json(auth('api')->user());
     }
 
-    protected function respondWithToken($token): JsonResponse
+    protected function respondWithToken(string $token): JsonResponse
     {
         return $this->json([
             'access_token' => $token,

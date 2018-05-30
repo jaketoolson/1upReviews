@@ -14,6 +14,7 @@ use Venturecraft\Revisionable\RevisionableTrait;
 use Illuminate\Database\Eloquent\Collection;
 
 /**
+ * @property int id
  * @property int social_focus_id
  * @property string name
  * @property int email_campaign_id

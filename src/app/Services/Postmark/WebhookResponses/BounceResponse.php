@@ -69,10 +69,6 @@ class BounceResponse
      */
     private $jsonString;
 
-    /**
-     * @param string $jsonString
-     * @return BounceResponse
-     */
     public static function factory(string $jsonString): BounceResponse
     {
         $instance = new self();
