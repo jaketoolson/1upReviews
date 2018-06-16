@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" href="{{ elixir('css/vendor.css') }}">
     @stack('header-styles')
     @stack('header-scripts')
 </head>

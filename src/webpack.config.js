@@ -15,8 +15,12 @@ module.exports = {
             assetsDir + 'main.ts'
         ],
         'js/vendor' : [
-            assetsDir + 'vendor.js'
+            assetsDir + 'vendor.js',
         ],
+        'css/vendor' : [
+            __dirname + '/node_modules/bootstrap/dist/css/bootstrap.css',
+            __dirname + '/node_modules/bootstrap/dist/css/bootstrap-grid.css',
+        ]
     },
     output: {
         path: path.join( __dirname, 'public', 'build'),
@@ -58,6 +62,10 @@ module.exports = {
                     }
                 }
             },
+            {
+                test: /\.(ts|tsx)?$/,
+                loader: 'awesome-typescript-loader'
+            }
         ]
     },
     plugins: [
@@ -77,7 +85,7 @@ module.exports = {
         ),
     ],
     resolve: {
-        extensions: ['.ts', '.js', '.vue', '.json'],
+        extensions: ['.ts', '.tsx', '.js', '.vue', '.json'],
         alias: {
             'vue': 'vue/dist/vue.js',
         }
