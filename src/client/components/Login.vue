@@ -2,11 +2,17 @@
   - Copyright (c) 2018. Jake Toolson
   -->
 <template>
-    <span>
-        <input type="text" class="form-control" v-model="username" name="username">
-        <input type="password" class="form-control" v-model="password" name="password">
-        <button class="btn btn-block btn-outline-primary" type="button" @click.prent.default="login()">Login</button>
-    </span>
+    <div>
+        <div class="form-group">
+            <input type="text" class="form-control" autocomplete="off" v-model="username" name="username">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" autocomplete="off" v-model="password" name="password">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-block btn-primary" type="button" @click.prent.default="login()">Login</button>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -22,7 +28,7 @@
         },
         methods: {
             login () {
-                ApiService.post('/api/auth/login', {username: this.username, password: this.password}).then();
+                ApiService.post('/api/auth/login', {username: this.username, password: this.password});
             }
         }
     }

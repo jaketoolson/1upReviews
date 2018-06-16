@@ -2,7 +2,7 @@
   - Copyright (c) 2018. Jake Toolson
   -->
 <template>
-    <div>
+    <div class="container">
         <Login></Login>
     </div>
 </template>
@@ -11,8 +11,5 @@
     import Login from "../components/Login";
     export default {
         components: {Login},
-        data () {
-            return {};
-        },
     }
 </script>
