@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-//         $this->call(FillAttribute::class);
+         $this->call(CreateAdminData::class);
     }
 
     /**

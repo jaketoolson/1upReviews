@@ -2,33 +2,35 @@
   - Copyright (c) 2018. Jake Toolson
   -->
 <template>
-    <div>
+    <form>
         <div class="form-group">
-            <input type="text" class="form-control" autocomplete="off" v-model="username" name="username">
+            <input title="email" type="text" class="form-control" autocomplete="off" v-model="email" name="email">
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" autocomplete="off" v-model="password" name="password">
+            <input  title="password" type="password" class="form-control" autocomplete="off" v-model="password" name="password">
         </div>
         <div class="form-group">
             <button class="btn btn-block btn-primary" type="button" @click.prent.default="login()">Login</button>
         </div>
-    </div>
+    </form>
 </template>
-
 <script>
-    import {ApiService} from "../services/api";
+    import {AUTH_LOGIN} from "../store/auth.module";
 
     export default {
         name : "Login",
         data () {
             return {
-                username: null,
+                email: null,
                 password: null,
             };
         },
         methods: {
             login () {
-                ApiService.post('/api/auth/login', {username: this.username, password: this.password});
+                this.$store.dispatch('auth/' + AUTH_LOGIN, {
+                    email: this.email,
+                    password: this.password
+                })
             }
         }
     }

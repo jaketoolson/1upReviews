@@ -4,28 +4,16 @@
 
 import Vue from 'vue';
 import Vuex from 'vuex';
-import {SET_JWT} from "./mutation.types";
+import {authModule} from "./auth.module";
 
 Vue.use(Vuex);
 
-const initialState = {
-    jwt : null,
-};
-
-const state = (<any> Object).assign({}, initialState);
-
-const store = new Vuex.Store({
-    modules: {},
-    state: initialState,
-    mutations: {
-        [SET_JWT] (state, jwt) {
-            state.jwt = jwt;
-        },
+export const store = new Vuex.Store({
+    modules: {
+        auth: authModule
     },
+    state: {},
+    mutations: {},
     actions: {},
-    getters: {
-        jwt: state => state.jwt
-    },
+    getters: {},
 });
-
-export {initialState, state, store};
