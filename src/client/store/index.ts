@@ -4,7 +4,7 @@
 
 import Vue from 'vue';
 import Vuex from 'vuex';
-import {authModule} from "./auth.module";
+import {authModule} from "../modules/auth/store";
 
 Vue.use(Vuex);
 

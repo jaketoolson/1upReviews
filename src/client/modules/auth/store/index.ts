@@ -2,8 +2,8 @@
  * Copyright (c) 2018. Jake Toolson
  */
 
-import {JWT_STORAGE_KEY} from "./helpers";
-import {ApiService} from "../services/api";
+import {ApiService} from "../../../services/api";
+import {setJwtToken, clearJwtToken, isLoggedIn} from "../auth";
 
 // Mutations
 export const AUTH_SET_JWT = 'setJwt';
@@ -15,7 +15,7 @@ export const AUTH_REFRESH = 'refresh';
 
 const initialState = {
     jwt : null,
-    isLoggedIn: !!localStorage.getItem(JWT_STORAGE_KEY)
+    isLoggedIn: isLoggedIn()
 };
 
 const state = (<any> Object).assign({}, initialState);
@@ -30,18 +30,18 @@ export const authModule = {
     },
     actions: {
         [AUTH_LOGIN] ({commit} : {commit: any}, credentials : {email: string, password: string}) {
-            ApiService.post('/api/auth/login', credentials).then((r)=>{
+            ApiService.post('/api/auth/login', credentials).then((r : any)=>{
                 commit(AUTH_SET_JWT, r.data.access_token);
-                localStorage.setItem(JWT_STORAGE_KEY, r.data.access_token);
+                setJwtToken(r.data.access_token);
             });
         },
         [AUTH_LOGOUT] ({commit} : {commit: any}) {
             commit(AUTH_SET_JWT, null);
-            localStorage.removeItem(JWT_STORAGE_KEY);
-        }
+            clearJwtToken();
+        },
+        [AUTH_REFRESH] () {}
     },
     getters: {
-        jwt: (state: any) => state.jwt,
-        isLoggedIn: (state: any) => state.isLoggedIn
+        isLoggedIn: (state: any) : boolean => state.isLoggedIn
     }
 };

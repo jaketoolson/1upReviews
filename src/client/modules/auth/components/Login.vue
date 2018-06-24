@@ -15,7 +15,7 @@
     </form>
 </template>
 <script>
-    import {AUTH_LOGIN} from "../store/auth.module";
+    import {AUTH_LOGIN} from "../store";
 
     export default {
         name : "Login",

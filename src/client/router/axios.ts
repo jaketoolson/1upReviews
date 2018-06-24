@@ -3,7 +3,7 @@
  */
 
 import axios from 'axios';
-import {JWT_STORAGE_KEY} from "../store/helpers";
+import {JWT_STORAGE_KEY} from "../modules/auth/auth";
 
 export default axios.create({
     headers: {

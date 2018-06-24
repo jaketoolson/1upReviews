@@ -8,7 +8,7 @@
 </template>
 
 <script>
-    import Login from "../components/Login";
+    import Login from "../modules/auth/components/Login";
     export default {
         components: {Login},
     }
