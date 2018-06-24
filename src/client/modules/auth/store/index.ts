@@ -42,6 +42,6 @@ export const authModule = {
         [AUTH_REFRESH] () {}
     },
     getters: {
-        isLoggedIn: (state: any) : boolean => state.isLoggedIn
+        isLoggedIn: (state: any): boolean => state.isLoggedIn
     }
 };

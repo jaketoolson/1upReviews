@@ -20,18 +20,18 @@ export function setJwtToken(jwtToken : string): void {
     localStorage.setItem(JWT_STORAGE_KEY, jwtToken);
 }
 
-export function clearJwtToken() : void {
+export function clearJwtToken(): void {
     localStorage.removeItem(JWT_STORAGE_KEY);
 }
 
-export function getJwtToken() : string|null {
+export function getJwtToken(): string|null {
     return localStorage.getItem(JWT_STORAGE_KEY);
 }
 
-export function isLoggedIn() : boolean {
+export function isLoggedIn(): boolean {
     const idToken = getJwtToken();
 
-    return idToken ? isTokenExpired(idToken) : false;
+    return idToken ? !isTokenExpired(idToken) : false;
 }
 
 function getTokenExpirationDate(jwtToken : string): Date|null {
