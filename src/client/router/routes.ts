@@ -2,30 +2,27 @@
  * Copyright (c) 2018. Jake Toolson
  */
 
+import Login from "../modules/auth/components/Login.vue";
+import Home from '../components/Home.vue';
+import {requireAuthMiddleware} from "../modules/auth/auth";
+
 export default [
     {
         path: '/',
-        // component: Home,
         name: 'home',
+        beforeEnter: requireAuthMiddleware,
+        component: Home
     },
     {
         path: '/auth',
+        components: {
+            default: { template: `<router-view/>`}
+        },
         children : [
             {
                 path: 'login',
-                name: 'api.planets'
-            },
-            {
-                path: 'planets/:id',
-                name: 'api.planets.show'
-            },
-            {
-                path: 'galaxies',
-                name: 'api.galaxies'
-            },
-            {
-                path: 'amenities',
-                name: 'api.amenities'
+                name: 'auth.login',
+                component: Login
             },
         ],
     },

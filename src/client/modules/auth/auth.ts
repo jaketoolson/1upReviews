@@ -8,7 +8,7 @@ export const JWT_STORAGE_KEY = 'oneupreviews_token';
 export function requireAuthMiddleware(to : any, from : any, next : any): void {
     if (!isLoggedIn()) {
         next({
-            path: '/',
+            name: 'auth.login',
             query: { redirect: to.fullPath }
         });
     } else {

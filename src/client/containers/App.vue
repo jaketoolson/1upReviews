@@ -3,13 +3,10 @@
   -->
 <template>
     <div class="container">
-        <Login></Login>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
-    import Login from "../modules/auth/components/Login";
-    export default {
-        components: {Login},
-    }
+    export default {}
 </script>

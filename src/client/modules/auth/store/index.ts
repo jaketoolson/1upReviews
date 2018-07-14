@@ -3,7 +3,7 @@
  */
 
 import {ApiService} from "../../../services/api";
-import {setJwtToken, clearJwtToken, isLoggedIn} from "../auth";
+import {setJwtToken, clearJwtToken, getJwtToken} from "../auth";
 
 // Mutations
 export const AUTH_SET_JWT = 'setJwt';
@@ -14,8 +14,7 @@ export const AUTH_LOGOUT = 'logout';
 export const AUTH_REFRESH = 'refresh';
 
 const initialState = {
-    jwt : null,
-    isLoggedIn: isLoggedIn()
+    jwt: null,
 };
 
 const state = (<any> Object).assign({}, initialState);
@@ -24,7 +23,7 @@ export const authModule = {
     namespaced: true,
     state: state,
     mutations: {
-        [AUTH_SET_JWT] (state : any, jwt ?: string) {
+        [AUTH_SET_JWT] (state : any, jwt : string) {
             state.jwt = jwt;
         },
     },
@@ -42,6 +41,7 @@ export const authModule = {
         [AUTH_REFRESH] () {}
     },
     getters: {
-        isLoggedIn: (state: any): boolean => state.isLoggedIn
+        jwt: (state: any): string|null => state.jwt,
+        isLoggedIn: (state: any): boolean => state.jwt
     }
 };

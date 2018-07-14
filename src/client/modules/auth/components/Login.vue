@@ -16,6 +16,7 @@
 </template>
 <script>
     import {AUTH_LOGIN} from "../store";
+    import {router} from "../../../router";
 
     export default {
         name : "Login",
@@ -30,7 +31,9 @@
                 this.$store.dispatch('auth/' + AUTH_LOGIN, {
                     email: this.email,
                     password: this.password
-                })
+                }).then(() => {
+                    router.push({name: 'home'});
+                });
             }
         }
     }
