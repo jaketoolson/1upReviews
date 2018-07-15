@@ -3,6 +3,15 @@
 
 @section('content')
 
+    <div class="float-right">
+        <a href="/emails/templates/create" class="btn btn-outline-primary w-xs">Create New</a>
+    </div>
+
+    <h4 class="m-t-0 header-title">
+        Email Templates - All
+    </h4>
+
+
     <table class="table table-plain">
         <thead>
         <tr>
@@ -13,18 +22,18 @@
         </tr>
         </thead>
         <tbody>
-        @for($i = 0; $i<50; $i++)
+        @foreach($emailTemplates as $emailTemplate)
             <tr>
-                <td>{{ $i+1 }}</td>
-                <td>{{ Faker\Factory::create()->words(mt_rand(3, 6), true) }}</td>
-                <td>{{ date('F d, Y', mt_rand(1, time())) }}</td>
+                <td>{{ $emailTemplate->id }}</td>
+                <td>{{ $emailTemplate->name }}</td>
+                <td>{{ OneUpReviews\Helpers\DateHelper::convertTimestampToFormat($emailTemplate->created_at) }}</td>
                 <td>
                     <a href="#" class="card-drop">
                         <i class="icon-options"></i>
                     </a>
                 </td>
             </tr>
-        @endfor
+        @endforeach
         </tbody>
     </table>
 

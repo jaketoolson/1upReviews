@@ -12,6 +12,7 @@
     "league/csv": "9.1.4",
     "predis/predis": "1.1.1",
     "quickbooks/v3-php-sdk": "4.0.1",
+    "soundasleep/html2text": "~0.5",
     "spatie/laravel-permission": "2.12.1",
     "tymon/jwt-auth": "1.0.0-rc.2",
     "venturecraft/revisionable": "1.28.0"

@@ -17,7 +17,7 @@
 
                 <li>
                     <a href="/emails/templates">
-                        <i class="mdi mdi-email-outline"></i> <span> Email </span>
+                        <i class="mdi mdi-email-outline"></i> <span> Emails </span>
                     </a>
                 </li>
 

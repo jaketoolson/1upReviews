@@ -14,7 +14,6 @@ use OneUpReviews\Models\Traits\Uuidable;
 
 /**
  * @property int id
- * @property int campaign_id
  * @property int tenant_id
  * @property int client_id
  * @property int sent_by
@@ -31,6 +30,7 @@ use OneUpReviews\Models\Traits\Uuidable;
  * @property null|string resent_at
  *
  * @property Client $client
+ * @property EmailTemplate $emailTemplate
  * @property Collection $activities
  */
 class CampaignEmail extends BaseEloquentModel
@@ -41,7 +41,6 @@ class CampaignEmail extends BaseEloquentModel
 
     protected $fillable = [
         'uuid',
-        'campaign_id',
         'tenant_id',
         'client_id',
         'email_template_id',
@@ -73,6 +72,11 @@ class CampaignEmail extends BaseEloquentModel
         'client_id',
         'sent_by',
     ];
+
+    public function emailTemplate(): BelongsTo
+    {
+        return $this->belongsTo(EmailTemplate::class, 'email_template_id');
+    }
 
     public function client(): BelongsTo
     {

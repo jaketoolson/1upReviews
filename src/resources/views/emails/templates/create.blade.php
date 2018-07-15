@@ -32,7 +32,7 @@
         </div>
         <div class="form-group">
             <div>
-                <button type="submit" class="btn btn-success waves-effect waves-light">Create</button>
+                <button type="submit" class="btn btn-success waves-effect waves-light">Save</button>
             </div>
         </div>
     </form>

@@ -8,6 +8,7 @@ namespace OneUpReviews\Models;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OneUpReviews\Models\Traits\BelongsToTenants;
 use OneUpReviews\Models\Traits\Uuidable;
+use Html2Text\Html2Text;
 
 /**
  * @property int id
@@ -49,6 +50,6 @@ class EmailTemplate extends BaseEloquentModel
 
     public function htmlToText(string $html): string
     {
-        return $html;
+        return Html2Text::convert($html);
     }
 }

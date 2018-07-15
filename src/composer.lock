@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d849fd1d230e39eb3ab916523501a9e3",
+    "content-hash": "81bb0ff14a4f3e15b26afe78b63e1594",
     "packages": [
         {
             "name": "coconutcraig/laravel-postmark",
@@ -951,7 +951,7 @@
                 {
                     "name": "Luís Otávio Cobucci Oblonczyk",
                     "email": "lcobucci@gmail.com",
-                    "role": "Developer"
+                    "role": "developer"
                 }
             ],
             "description": "A simple library to work with JSON Web Token and JSON Web Signature",
@@ -1841,6 +1841,56 @@
                 "stylesheet"
             ],
             "time": "2016-07-19T19:14:21+00:00"
+        },
+        {
+            "name": "soundasleep/html2text",
+            "version": "0.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/soundasleep/html2text.git",
+                "reference": "cdb89f6ffa2c4cc78f8ed9ea6ee0594a9133ccad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/soundasleep/html2text/zipball/cdb89f6ffa2c4cc78f8ed9ea6ee0594a9133ccad",
+                "reference": "cdb89f6ffa2c4cc78f8ed9ea6ee0594a9133ccad",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-libxml": "*",
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=4.0",
+                "soundasleep/component-tests": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Html2Text\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "EPL-1.0"
+            ],
+            "authors": [
+                {
+                    "name": "Jevon Wright",
+                    "homepage": "https://jevon.org",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A PHP script to convert HTML into a plain text format",
+            "homepage": "https://github.com/soundasleep/html2text",
+            "keywords": [
+                "email",
+                "html",
+                "php",
+                "text"
+            ],
+            "time": "2017-04-19T22:01:50+00:00"
         },
         {
             "name": "spatie/laravel-permission",
