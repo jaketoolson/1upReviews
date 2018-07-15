@@ -15,6 +15,7 @@
     "jquery": "^3.2",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.10",
+    "metismenu": "^2.7.9",
     "moment": "2.19.3",
     "moment-timezone": "0.4.1",
     "popper.js": "^1.14.3",

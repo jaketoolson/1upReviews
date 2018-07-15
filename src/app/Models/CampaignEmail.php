@@ -18,6 +18,7 @@ use OneUpReviews\Models\Traits\Uuidable;
  * @property int tenant_id
  * @property int client_id
  * @property int sent_by
+ * @property int email_template_id
  * @property string recipient_email
  * @property string subject
  * @property string body_html
@@ -43,6 +44,7 @@ class CampaignEmail extends BaseEloquentModel
         'campaign_id',
         'tenant_id',
         'client_id',
+        'email_template_id',
         'sent_by',
         'recipient_email',
         'subject',

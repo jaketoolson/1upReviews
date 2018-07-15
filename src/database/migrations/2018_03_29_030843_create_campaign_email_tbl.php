@@ -30,6 +30,7 @@ class CreateCampaignEmailTbl extends Migration
             $table->bigInteger('campaign_id')->unsigned();
             $table->bigInteger('client_id')->unsigned();
             $table->bigInteger('sent_by')->unsigned();
+            $table->bigInteger('email_template_id')->unsigned();
             $table->string('recipient_email');
             $table->string('subject');
             $table->string('body_html');

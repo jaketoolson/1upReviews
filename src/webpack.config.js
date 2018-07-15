@@ -7,6 +7,7 @@ const WebpackAssetsManifest = require('webpack-assets-manifest');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const assetsDir = __dirname +'/client/';
+const resourcesDir = __dirname + '/resources/';
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
@@ -14,12 +15,20 @@ module.exports = {
         'js/app' : [
             assetsDir + 'main.ts'
         ],
+        'js/layout' : [
+            assetsDir + 'layout.js',
+        ],
         'js/vendor' : [
             assetsDir + 'vendor.js',
         ],
+        'css/layout' : [
+            resourcesDir + 'layout/boxed/app/scss/app.scss'
+        ],
         'css/vendor' : [
-            __dirname + '/node_modules/bootstrap/dist/css/bootstrap.css',
-            __dirname + '/node_modules/bootstrap/dist/css/bootstrap-grid.css',
+            resourcesDir + 'layout/boxed/vendor/css/metismenu/metismenu.min.css',
+            resourcesDir + 'layout/boxed/vendor/css/mdi/materialdesignicons.min.css',
+            resourcesDir + 'layout/boxed/vendor/css/dripicons/webfont.css',
+            resourcesDir + 'layout/boxed/vendor/css/simple-line-icons/simple-line-icons.css',
         ]
     },
     output: {
