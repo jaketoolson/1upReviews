@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use OneUpReviews\Models\Traits\Uuidable;
-use Venturecraft\Revisionable\RevisionableTrait;
 use Illuminate\Database\Eloquent\Collection;
 
 /**
@@ -27,7 +26,7 @@ use Illuminate\Database\Eloquent\Collection;
  */
 class Tenant extends BaseEloquentModel
 {
-    use RevisionableTrait, Uuidable;
+    use Uuidable;
 
     protected $fillable = [
         'uuid',

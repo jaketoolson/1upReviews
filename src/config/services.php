@@ -19,6 +19,10 @@ return [
         'secret' => env('MAILGUN_SECRET'),
     ],
 
+    'postmark' => [
+        'secret' => env('POSTMARK_SECRET'),
+    ],
+
     'ses' => [
         'key' => env('SES_KEY'),
         'secret' => env('SES_SECRET'),
@@ -30,7 +34,7 @@ return [
     ],
 
     'stripe' => [
-        'model' => OneUpReviews\User::class,
+        'model' => OneUpReviews\Models\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],

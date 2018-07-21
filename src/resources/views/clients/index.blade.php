@@ -4,29 +4,31 @@
 @section('content')
 
     <div class="float-right">
-        <a href="/emails/templates/create" class="btn btn-outline-primary w-xs">Create New</a>
+        <a href="/clients/create" class="btn btn-outline-primary w-xs">Create New</a>
     </div>
 
     <h4 class="m-t-0 header-title">
-        Email Templates - All
+        Clients - All
     </h4>
 
 
     <table class="table table-plain">
         <thead>
         <tr>
-            <th>Campaign Name</th>
-            <th>Date</th>
-            <th>Sent Emails</th>
+            <th>Name</th>
+            <th>Business Name</th>
+            <th>Email Address</th>
+            <th>Last Email</th>
             <th></th>
         </tr>
         </thead>
         <tbody>
-        @foreach($emailTemplates as $emailTemplate)
+        @foreach($clients as $client)
             <tr>
-                <td>{{ $emailTemplate->name }}</td>
-                <td>{{ OneUpReviews\Helpers\DateHelper::convertTimestampToFormat($emailTemplate->created_at) }}</td>
-                <td>{{ $emailTemplate->campaignEmails->count() }}</td>
+                <td>{{ $client->full_name }}</td>
+                <td>@if($client->business_name) {{ $client->business_name }} @else <i>(none)</i> @endif</td>
+                <td>{{ $client->email_address }}</td>
+                <td>{{ $client->emails->count() }}</td>
                 <td>
                     <a href="#" class="card-drop">
                         <i class="icon-options"></i>

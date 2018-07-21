@@ -5,8 +5,9 @@
 
 namespace OneUpReviews\Foundation\Providers;
 
-use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use OneUpReviews\Events\CampaignEmailCreated;
+use OneUpReviews\Listeners\SendCampaignEmailForResponse;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -16,9 +17,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'OneUpReviews\Events\Event' => [
-            'OneUpReviews\Listeners\EventListener',
-        ],
+        CampaignEmailCreated::class => [
+            SendCampaignEmailForResponse::class
+        ]
     ];
 
     /**

@@ -5,7 +5,9 @@
 
 namespace OneUpReviews\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Collection;
 use OneUpReviews\Models\Traits\BelongsToTenants;
 use OneUpReviews\Models\Traits\Uuidable;
 use Html2Text\Html2Text;
@@ -18,6 +20,8 @@ use Html2Text\Html2Text;
  * @property string subject
  * @property string body_html
  * @property string body_text
+ *
+ * @property Collection $campaignEmails
  */
 class EmailTemplate extends BaseEloquentModel
 {
@@ -46,6 +50,11 @@ class EmailTemplate extends BaseEloquentModel
         self::saving(function(EmailTemplate $model){
             $model->body_text = $model->htmlToText($model->body_html);
         });
+    }
+
+    public function campaignEmails(): HasMany
+    {
+        return $this->hasMany(CampaignEmail::class, 'email_template_id');
     }
 
     public function htmlToText(string $html): string

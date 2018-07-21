@@ -20,13 +20,13 @@
         </div>
         <div class="form-group">
             <label for="name">
-                Template Subject<span class="text-danger">*</span>
+                Email Subject<span class="text-danger">*</span>
             </label>
             <input type="text" class="form-control" name="subject" placeholder="">
         </div>
         <div class="form-group">
             <label for="name">
-                Template Body<span class="text-danger">*</span>
+                Email Body<span class="text-danger">*</span>
             </label>
             <textarea class="form-control" rows="10" name="body"></textarea>
         </div>

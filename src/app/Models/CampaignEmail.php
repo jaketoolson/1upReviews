@@ -65,7 +65,6 @@ class CampaignEmail extends BaseEloquentModel
         'resent_at',
     ];
 
-
     protected $hidden = [
         'id',
         'tenant_id',

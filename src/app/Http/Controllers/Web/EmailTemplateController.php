@@ -13,7 +13,7 @@ class EmailTemplateController extends Controller
 {
     public function index()
     {
-        $emailTemplates = EmailTemplate::all();
+        $emailTemplates = EmailTemplate::with('campaignEmails')->orderByDesc('created_at')->get();
 
         return $this->view('emails.templates.index', compact('emailTemplates'));
     }
@@ -25,11 +25,13 @@ class EmailTemplateController extends Controller
 
     public function store(EmailTemplateCreationRequest $request)
     {
-        $emailTemplate = EmailTemplate::create([
+        EmailTemplate::create([
             'tenant_id' => 1100000,
             'name' => $request->get('name'),
             'subject' => $request->get('subject'),
             'body_html' => $request->get('body')
         ]);
+
+        return $this->redirect('/emails/templates');
     }
 }

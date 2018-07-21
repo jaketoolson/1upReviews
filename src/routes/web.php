@@ -14,6 +14,13 @@ Route::post('/emails/templates', 'EmailTemplateController@store');
 Route::patch('/emails/templates/{id}', 'EmailTemplateController@update');
 Route::delete('/emails/templates', 'EmailTemplateController@destroy');
 
+Route::get('/emails/campaigns', 'EmailController@index');
+Route::get('/emails/campaigns/create', 'EmailController@create');
+
+Route::get('/clients', 'ClientController@index');
+Route::get('/clients/create', 'ClientController@create');
+Route::post('/clients', 'ClientController@store');
+
 
 // TODO: Uncomment when front-end is serving pages.
 //Route::get('{any}', function () {
