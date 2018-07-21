@@ -5,7 +5,7 @@
 
 namespace OneUpReviews\Listeners;
 
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Contracts\Mail\Mailer;
 use OneUpReviews\Events\CampaignEmailCreated;
 use OneUpReviews\Mail\Reminder;
 use OneUpReviews\Models\CampaignEmail;
@@ -13,10 +13,12 @@ use OneUpReviews\Services\CampaignEmailService;
 
 class SendCampaignEmailForResponse
 {
+    private $mailer;
     private $campaignEmailService;
 
-    public function __construct(CampaignEmailService $campaignEmailService)
+    public function __construct(Mailer $mailer, CampaignEmailService $campaignEmailService)
     {
+        $this->mailer = $mailer;
         $this->campaignEmailService = $campaignEmailService;
     }
 
@@ -24,7 +26,7 @@ class SendCampaignEmailForResponse
     {
         $campaignEmail = $this->getCampaignEmail($event->getCampaignEmailId());
 
-        Mail::to($campaignEmail->recipient_email)->send(new Reminder($campaignEmail));
+        $this->mailer->to($campaignEmail->recipient_email)->send(new Reminder($campaignEmail));
     }
 
     private function getCampaignEmail(int $campaignEmailId): CampaignEmail

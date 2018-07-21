@@ -23,6 +23,11 @@ class EmailSent implements Swift_Events_EventListener
         $this->emailService = app(CampaignEmailService::class);
     }
 
+    public function beforeSendPerformed(Swift_Events_SendEvent $message): void
+    {
+        
+    }
+
     public function sendPerformed(Swift_Events_SendEvent $message): void
     {
         $headers = $message->getMessage()->getHeaders();

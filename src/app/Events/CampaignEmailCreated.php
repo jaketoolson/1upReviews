@@ -7,6 +7,9 @@ namespace OneUpReviews\Events;
 
 class CampaignEmailCreated
 {
+    /**
+     * @var int
+     */
     private $campaignEmailId;
 
     public function __construct(int $campaignEmailId)

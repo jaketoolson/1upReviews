@@ -7,6 +7,7 @@ namespace OneUpReviews\Services;
 
 use Exception;
 use OneUpReviews\Events\CampaignEmailCreated;
+use OneUpReviews\Models\EmailTemplate;
 use OneUpReviews\Models\User;
 use OneUpReviews\Models\CampaignEmail;
 use OneUpReviews\Models\Client;
@@ -23,44 +24,33 @@ class CampaignEmailService
     }
 
     /**
-     * @param Tenant   $tenant
-     * @param Client   $client
-     * @param User     $sentBy
-     * @param int|null $emailCampaignId
-     * @param string   $recipientEmail
-     * @param string   $subject
-     * @param string   $bodyHtml
-     *
+     * @param Tenant $tenant
+     * @param Client $client
+     * @param User $sentBy
+     * @param EmailTemplate $emailTemplate
      * @return CampaignEmail
-     * @throws Exception
      */
     public function create(
         Tenant $tenant,
         Client $client,
         User $sentBy,
-        ?int $emailCampaignId,
-        string $recipientEmail,
-        string $subject,
-        string $bodyHtml
+        EmailTemplate $emailTemplate
     ): CampaignEmail
     {
-        if (! $emailCampaignId) {
-            
-        }
+        $bodyHtml = $emailTemplate->body_html;
+        $bodyText = $emailTemplate->body_text;
+        $subject = $emailTemplate->subject;
 
-        $email = new CampaignEmail([
+        $email = CampaignEmail::create([
             'tenant_id' => $tenant->id,
             'client_id' => $client->id,
             'sent_by' => $sentBy->id,
-            'email_campaign_id' => $emailCampaignId,
-            'recipient_email' => $recipientEmail,
+            'email_template_id' => $emailTemplate->id,
+            'recipient_email' => $client->email_address,
             'subject' => $subject,
             'body_html' => $bodyHtml,
-            'body_text' => '',
-            'provider_message_id' => '',
+            'body_text' => $bodyText,
         ]);
-
-        $tenant->emails()->save($email);
 
         event(new CampaignEmailCreated($email->id));
 

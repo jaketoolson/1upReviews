@@ -16,6 +16,7 @@ Route::delete('/emails/templates', 'EmailTemplateController@destroy');
 
 Route::get('/emails/campaigns', 'EmailController@index');
 Route::get('/emails/campaigns/create', 'EmailController@create');
+Route::post('/emails/campaigns', 'EmailController@store');
 
 Route::get('/clients', 'ClientController@index');
 Route::get('/clients/create', 'ClientController@create');

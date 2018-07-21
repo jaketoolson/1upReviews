@@ -10,9 +10,21 @@ use OneUpReviews\Http\Controllers\Controller;
 use OneUpReviews\Models\CampaignEmail;
 use OneUpReviews\Models\Client;
 use OneUpReviews\Models\EmailTemplate;
+use OneUpReviews\Models\User;
+use OneUpReviews\Services\CampaignEmailService;
 
 class EmailController extends Controller
 {
+    /**
+     * @var CampaignEmailService
+     */
+    private $campaignEmailService;
+
+    public function __construct(CampaignEmailService $campaignEmailService)
+    {
+        $this->campaignEmailService = $campaignEmailService;
+    }
+
     public function index()
     {
         $campaignEmails = CampaignEmail::all()->sortByDesc('created_at');
@@ -30,12 +42,16 @@ class EmailController extends Controller
 
     public function store(Request $request)
     {
+        $user = User::first();
+        $tenant = $user->tenant;
+        $client = Client::find($request->get('client_id'));
         $emailTemplate = EmailTemplate::find($request->get('email_template_id'));
 
-        CampaignEmail::create([
-           'tenant_id' => '',
-           'client_id' => $request->get('client_id'),
-           'email_template_id' => $request->get('email_template_id'),
-        ]);
+        $this->campaignEmailService->create(
+            $tenant,
+            $client,
+            $user,
+            $emailTemplate
+        );
     }
 }
