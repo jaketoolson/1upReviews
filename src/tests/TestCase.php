@@ -11,7 +11,7 @@ use Exception;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication, DatabaseTransactions;
+    use CreatesApplication;
 
     public function mockAndBind(string $class): MockInterface
     {

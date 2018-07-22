@@ -5,6 +5,7 @@
 
 namespace Tests\Feature\Api\Webhook;
 
+use OneUpReviews\Models\CampaignEmail;
 use OneUpReviews\Models\Email;
 use Tests\Feature\BaseFeatureTest;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -24,37 +25,37 @@ class WebhookResponseTest extends BaseFeatureTest
     {
         $this->expectException(AuthorizationException::class);
 
-        $response = $this->json('POST', route('api.webhook.postmarkapp.bounce.store'), []);
+        $response = $this->json('POST', route('api.webhooks.postmark.store'), []);
 
         $response->assertStatus(422);
     }
 
     public function testBounced(): void
     {
-        $email = factory(Email::class)->create();
+//        $email = factory(CampaignEmail::class)->create();
         $payload = json_decode($this->getJsonFromFile('/tests/Stubs/PostmarkApp/WebhookBounceResponse.json'), true);
-        $payload['MessageID'] = $email->provider_message_id;
-        $response = $this->json('POST', route('api.webhook.postmarkapp.bounce.store'), $payload);
+//        $payload['MessageID'] = $email->provider_message_id;
+        $response = $this->json('POST', route('api.webhooks.postmark.store'), $payload);
 
         $response->assertStatus(200);
     }
 
     public function testDelivered(): void
     {
-        $email = factory(Email::class)->create();
+//        $email = factory(CampaignEmail::class)->create();
         $payload = json_decode($this->getJsonFromFile('/tests/Stubs/PostmarkApp/WebhookDeliveryResponse.json'), true);
-        $payload['MessageID'] = $email->provider_message_id;
-        $response = $this->json('POST', route('api.webhook.postmarkapp.delivery.store'), $payload);
+//        $payload['MessageID'] = $email->provider_message_id;
+        $response = $this->json('POST', route('api.webhooks.postmark.store'), $payload);
 
         $response->assertStatus(200);
     }
 
     public function testOpened(): void
     {
-        $email = factory(Email::class)->create();
+//        $email = factory(CampaignEmail::class)->create();
         $payload = json_decode($this->getJsonFromFile('/tests/Stubs/PostmarkApp/WebhookOpenedResponse.json'), true);
-        $payload['MessageID'] = $email->provider_message_id;
-        $response = $this->json('POST', route('api.webhook.postmarkapp.opens.store'), $payload);
+//        $payload['MessageID'] = $email->provider_message_id;
+        $response = $this->json('POST', route('api.webhooks.postmark.store'), $payload);
 
         $response->assertStatus(200);
     }

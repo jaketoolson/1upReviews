@@ -63,5 +63,6 @@ class Kernel extends HttpKernel
         'guest' => \OneUpReviews\Http\Middleware\RedirectIfAuthenticated::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'postmark' => \OneUpReviews\Http\Middleware\PostmarkWebhookMiddleware::class,
     ];
 }

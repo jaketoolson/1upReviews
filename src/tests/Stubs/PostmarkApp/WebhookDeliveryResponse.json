@@ -1,8 +1,13 @@
 {
+  "RecordType": "Delivery",
   "ServerID": 23,
-  "MessageID": "883953f4-6105-42a2-a16a-77a8eac79483",
+  "MessageID": "00000000-0000-0000-0000-000000000000",
   "Recipient": "john@example.com",
   "Tag": "welcome-email",
-  "DeliveredAt": "2014-08-01T13:28:10.2735393-04:00",
-  "Details": "Test delivery webhook details"
+  "DeliveredAt": "2014-08-01T13:28:10.273-04:00",
+  "Details": "Test delivery webhook details",
+  "Metadata": {
+    "example": "value",
+    "example_2": "value"
+  }
 }

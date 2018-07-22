@@ -9,7 +9,7 @@ use Illuminate\Http\JsonResponse;
 use OneUpReviews\Http\Requests\PostmarkWebhookRequest;
 use OneUpReviews\Services\Postmark\WebhookResponses\OpenedResponse;
 
-class OpenedWebhookController extends BaseWebhookController
+class OpenedWebhookController extends WebhookController
 {
     public function store(PostmarkWebhookRequest $request): JsonResponse
     {
