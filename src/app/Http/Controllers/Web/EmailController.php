@@ -27,7 +27,7 @@ class EmailController extends Controller
 
     public function index()
     {
-        $campaignEmails = CampaignEmail::all()->sortByDesc('created_at');
+        $campaignEmails = CampaignEmail::with(['client', 'emailTemplate', 'tenant'])->get()->sortByDesc('created_at');
 
         return $this->view('emails.campaigns.index', compact('campaignEmails'));
     }
@@ -53,5 +53,7 @@ class EmailController extends Controller
             $user,
             $emailTemplate
         );
+
+        $this->redirect('/emails/campaigns');
     }
 }

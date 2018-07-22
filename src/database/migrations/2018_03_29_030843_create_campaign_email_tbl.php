@@ -37,9 +37,9 @@ class CreateCampaignEmailTbl extends Migration
             $table->string('provider_message_id')->nullable()->default(null);
             $table->string('origin_message_id')->nullable()->default(null);
             $table->text('provider_response')->nullable()->default(null);
-            $table->boolean('is_delivered')->default(0);
-            $table->boolean('is_bounced')->default(0);
-            $table->boolean('is_opened')->default(0);
+            $table->dateTime('delivered_at')->nullable()->default(null);
+            $table->dateTime('bounced_at')->nullable()->default(null);
+            $table->dateTime('opened_at')->nullable()->default(null);
             $table->dateTime('resent_at')->nullable()->default(null);
             $table->timestamps();
             $table->softDeletes();

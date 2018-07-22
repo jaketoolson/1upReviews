@@ -24,9 +24,9 @@ use OneUpReviews\Models\Traits\Uuidable;
  * @property string body_text
  * @property string provider_message_id
  * @property string origin_message_id
- * @property bool is_delivered
- * @property bool is_bounced
- * @property bool is_opened
+ * @property null|string delivered_at
+ * @property null|string bounced_at
+ * @property null|string opened_at
  * @property null|string resent_at
  *
  * @property Client $client
@@ -52,9 +52,9 @@ class CampaignEmail extends BaseEloquentModel
         'provider_message_id',
         'origin_message_id',
         'provider_response',
-        'is_delivered',
-        'is_bounced',
-        'is_opened',
+        'delivered_at',
+        'bounced_at',
+        'opened_at',
         'resent_at',
     ];
 
@@ -104,22 +104,16 @@ class CampaignEmail extends BaseEloquentModel
 
     public function isDelivered(): bool
     {
-        return $this->activities->filter(function (CampaignEmailActivity $activity) {
-                return $activity->isDelivered();
-            })->count() >= 1;
+        return $this->delivered_at;
     }
 
     public function isOpened(): bool
     {
-        return $this->activities->filter(function (CampaignEmailActivity $activity) {
-                return $activity->isOpened();
-            })->count() >= 1;
+        return $this->opened_at;
     }
 
     public function isBounced(): bool
     {
-        return $this->activities->filter(function (CampaignEmailActivity $activity) {
-                return $activity->isBounced();
-            })->count() >= 1;
+        return $this->bounced_at;
     }
 }

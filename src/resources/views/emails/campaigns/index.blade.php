@@ -17,7 +17,6 @@
         <thead>
         <tr>
             <th>ID</th>
-            <th>Campaign Name</th>
             <th>Client</th>
             <th>Sent At</th>
             <th>Status</th>
@@ -27,6 +26,10 @@
         <tbody>
         @foreach($campaignEmails as $campaignEmail)
             <tr>
+                <td>{{ $campaignEmail->id }}</td>
+                <td>{{ $campaignEmail->client->first_name }}</td>
+                <td></td>
+                <td></td>
                 <td></td>
             </tr>
         @endforeach
