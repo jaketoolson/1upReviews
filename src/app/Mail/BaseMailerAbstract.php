@@ -5,23 +5,32 @@
 
 namespace OneUpReviews\Mail;
 
-use OneUpReviews\Listeners\CampaignEmailPlugin;
 use Swift_Message;
 use OneUpReviews\Models\CampaignEmail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Queue\SerializesModels;
 
-abstract class BaseMailerAbstract extends Mailable
+abstract class BaseMailerAbstract extends Mailable implements MailHeaders
 {
     use Queueable, SerializesModels;
 
+    /**
+     * @var CampaignEmail
+     */
     protected $email;
 
     public function __construct(CampaignEmail $email)
     {
-        Mail::getSwiftMailer()->registerPlugin(new CampaignEmailPlugin($email));
+        $this->email = $email;
+
+        $this->withSwiftMessage(function(Swift_Message $message) use ($email) {
+            $message->getHeaders()->addTextHeader(self::HEADER_CAMPAIGN_EMAIL_ID, $email->id);
+            $message->getHeaders()->addTextHeader(self::HEADER_TENANT_ID, $email->tenant_id);
+            $message->getHeaders()->addTextHeader('X-PM-KeepID', true);
+
+            return $message;
+        });
     }
 
     abstract public function build(): Mailable;

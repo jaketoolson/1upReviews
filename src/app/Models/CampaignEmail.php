@@ -72,6 +72,11 @@ class CampaignEmail extends BaseEloquentModel
         'sent_by',
     ];
 
+    public function tenant(): BelongsTo
+    {
+        return $this->belongsTo(Tenant::class, 'tenant_id');
+    }
+
     public function emailTemplate(): BelongsTo
     {
         return $this->belongsTo(EmailTemplate::class, 'email_template_id');

@@ -14,12 +14,9 @@ class Reminder extends BaseMailerAbstract
         $this->subject('test');
 
         $email = $this->email;
-        $hashedId = $email->getHashedId();
+        $hashedId = $email->id;
 
-        return $this->view('mail.feedbackrequest')
-            ->with('subject', 'test')
-            ->with('recommendUrl', route('feedback.show', [$hashedId]))
-            ->with('denyRecommendUrl', route('feedback.show', [$hashedId]))
-            ->with('tenant', \Auth::getUser()->tenant);
+        return $this->view('email')
+            ->with('subject', 'test');
     }
 }

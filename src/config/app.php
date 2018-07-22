@@ -150,7 +150,6 @@ return [
         /*
          * Package Service Providers...
          */
-        Coconuts\Mail\PostmarkServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         HipsterJazzbo\Landlord\LandlordServiceProvider::class,
 

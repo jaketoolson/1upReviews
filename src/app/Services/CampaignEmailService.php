@@ -70,9 +70,6 @@ class CampaignEmailService
             ->with([
                 'tenant',
                 'client',
-                'tenant.meta',
-                'emailCampaign',
-                'emailCampaign.socialFocus'
             ])
             ->withoutGlobalScope('tenant_id')
             ->firstOrFail();

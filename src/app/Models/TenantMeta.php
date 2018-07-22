@@ -6,7 +6,6 @@
 namespace OneUpReviews\Models;
 
 use OneUpReviews\Models\Traits\Uuidable;
-use Venturecraft\Revisionable\RevisionableTrait;
 
 /**
  * @property array social_order_default
@@ -19,7 +18,7 @@ use Venturecraft\Revisionable\RevisionableTrait;
  */
 class TenantMeta extends BaseEloquentModel
 {
-    use RevisionableTrait, Uuidable;
+    use Uuidable;
 
     public const SOCIAL_ORDER_DEFAULT = [
         1 => 'yelp',
