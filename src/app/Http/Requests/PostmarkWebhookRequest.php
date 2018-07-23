@@ -26,27 +26,27 @@ class PostmarkWebhookRequest extends FormRequest
         return json_decode($this->getContent(), true);
     }
 
-    public function recordTypeDelivered(): bool
+    public function emailTypeDelivered(): bool
     {
-        return $this->getRecordType() === 'Delivery';
+        return $this->getEmailType() === 'Delivery';
     }
 
-    public function recordTypeBounced(): bool
+    public function emailTypeBounced(): bool
     {
-        return $this->getRecordType() === 'Bounce';
+        return $this->getEmailType() === 'Bounce';
     }
 
-    public function recordTypeOpened(): bool
+    public function emailTypeOpened(): bool
     {
-        return $this->getRecordType() === 'Open';
+        return $this->getEmailType() === 'Open';
     }
 
-    public function recordTypeLinkClicked(): bool
+    public function emailTypeLinkClinked(): bool
     {
-        return $this->getRecordType() === 'Click';
+        return $this->getEmailType() === 'Click';
     }
 
-    public function getRecordType(): ?string
+    public function getEmailType(): ?string
     {
         $content = $this->getDecodedContent();
 

@@ -5,7 +5,6 @@
 
 namespace OneUpReviews\Services;
 
-use Carbon\Carbon;
 use OneUpReviews\Models\CampaignEmailActivity;
 use OneUpReviews\Events\CampaignEmailActivityStored;
 use OneUpReviews\Services\Postmark\WebhookResponses\OpenedResponse;
@@ -17,56 +16,52 @@ class CampaignEmailActivityService
     /**
      * @var CampaignEmailService
      */
-    protected $emailService;
+    protected $campaignEmailService;
 
-    public function __construct(CampaignEmailService $emailService)
+    public function __construct(CampaignEmailService $campaignEmailService)
     {
-        $this->emailService = $emailService;
+        $this->campaignEmailService = $campaignEmailService;
     }
 
     public function storeBounce(BounceResponse $response): CampaignEmailActivity
     {
-        $email = $this->emailService->findWithNoGlobalScope('provider_message_id', $response->getMessageId());
+        $email = $this->campaignEmailService->findWithNoGlobalScope('provider_message_id', $response->getMessageId());
 
         return $this->createActivity(
             $email->id,
             $response->getJsonString(),
-            CampaignEmailActivity::TYPE_BOUNCED,
-            $response->getBouncedAt()
+            CampaignEmailActivity::TYPE_BOUNCED
         );
     }
 
     public function storeDelivered(DeliveredResponse $response): CampaignEmailActivity
     {
-        $email = $this->emailService->findWithNoGlobalScope('provider_message_id', $response->getMessageId());
+        $email = $this->campaignEmailService->findWithNoGlobalScope('provider_message_id', $response->getMessageId());
 
         return $this->createActivity(
             $email->id,
             $response->getJsonString(),
-            CampaignEmailActivity::TYPE_DELIVERED,
-            $response->getDeliveredAt()
+            CampaignEmailActivity::TYPE_DELIVERED
         );
     }
 
     public function storeOpened(OpenedResponse $response): CampaignEmailActivity
     {
-        $email = $this->emailService->findWithNoGlobalScope('provider_message_id', $response->getMessageId());
+        $email = $this->campaignEmailService->findWithNoGlobalScope('provider_message_id', $response->getMessageId());
 
         return $this->createActivity(
             $email->id,
             $response->getJsonString(),
-            CampaignEmailActivity::TYPE_OPENED,
-            $response->getReceivedAt()
+            CampaignEmailActivity::TYPE_OPENED
         );
     }
 
-    private function createActivity(int $emailId, string $jsonString, string $type, Carbon $date): CampaignEmailActivity
+    private function createActivity(int $emailId, string $jsonString, string $type): CampaignEmailActivity
     {
         $activity = CampaignEmailActivity::create([
-            'email_id' => $emailId,
+            'campaign_email_id' => $emailId,
             'raw_json' => $jsonString,
             'type' => $type,
-            'activity_date' => $date->toDateTimeString()
         ]);
 
         event(new CampaignEmailActivityStored($activity));

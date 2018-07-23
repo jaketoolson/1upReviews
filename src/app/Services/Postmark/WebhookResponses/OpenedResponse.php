@@ -64,22 +64,21 @@ class OpenedResponse
      */
     private $jsonString;
 
-    public static function factory(string $jsonString): OpenedResponse
+    public static function factory(array $payload): OpenedResponse
     {
         $instance = new self();
-        $instance->jsonString = $jsonString;
-        $responseArray = json_decode($jsonString, true);
 
-        $instance->firstOpen = $responseArray['FirstOpen'];
-        $instance->client = $responseArray['Client'];
-        $instance->os = $responseArray['OS'];
-        $instance->platform = $responseArray['Platform'];
-        $instance->userAgent = $responseArray['UserAgent'];
-        $instance->readSeconds = $responseArray['ReadSeconds'];
-        $instance->geo = $responseArray['Geo'];
-        $instance->messageId = $responseArray['MessageID'];
-        $instance->receivedAt = Carbon::parse($responseArray['ReceivedAt']);
-        $instance->recipient = $responseArray['Recipient'];
+        $instance->firstOpen = $payload['FirstOpen'];
+        $instance->client = $payload['Client'];
+        $instance->os = $payload['OS'];
+        $instance->platform = $payload['Platform'];
+        $instance->userAgent = $payload['UserAgent'];
+        $instance->readSeconds = $payload['ReadSeconds'];
+        $instance->geo = $payload['Geo'];
+        $instance->messageId = $payload['MessageID'];
+        $instance->receivedAt = Carbon::parse($payload['ReceivedAt']);
+        $instance->recipient = $payload['Recipient'];
+        $instance->jsonString = json_encode($payload);
 
         return $instance;
     }

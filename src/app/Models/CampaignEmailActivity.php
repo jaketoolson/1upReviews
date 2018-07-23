@@ -14,7 +14,6 @@ use OneUpReviews\Models\Traits\Uuidable;
  * @property int id
  * @property int email_id
  * @property string type
- * @property string activity_date
  * @property string raw_json
  */
 class CampaignEmailActivity extends BaseEloquentModel implements EmailActivityInterface
@@ -32,10 +31,9 @@ class CampaignEmailActivity extends BaseEloquentModel implements EmailActivityIn
 
     protected $fillable = [
         'uuid',
-        'email_id',
+        'campaign_email_id',
         'raw_json',
         'type',
-        'activity_date',
     ];
 
     protected $hidden = [

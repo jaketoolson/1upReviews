@@ -69,23 +69,22 @@ class BounceResponse
      */
     private $jsonString;
 
-    public static function factory(string $jsonString): BounceResponse
+    public static function factory(array $payload): BounceResponse
     {
         $instance = new self();
-        $instance->jsonString = $jsonString;
-        $responseArray = json_decode($jsonString, true);
 
-        $instance->id = $responseArray['ID'];
-        $instance->name = $responseArray['Name'];
-        $instance->tag = array_get($responseArray, 'Tag', null);
-        $instance->messageId = $responseArray['MessageID'];
-        $instance->serverId = $responseArray['ServerID'];
-        $instance->description = $responseArray['Description'];
-        $instance->details = $responseArray['Details'];
-        $instance->email = $responseArray['Email'];
-        $instance->bouncedAt = Carbon::parse($responseArray['BouncedAt']);
-        $instance->inactive = $responseArray['Inactive'];
-        $instance->canActivate = $responseArray['CanActivate'];
+        $instance->id = $payload['ID'];
+        $instance->name = $payload['Name'];
+        $instance->tag = array_get($payload, 'Tag', null);
+        $instance->messageId = $payload['MessageID'];
+        $instance->serverId = $payload['ServerID'];
+        $instance->description = $payload['Description'];
+        $instance->details = $payload['Details'];
+        $instance->email = $payload['Email'];
+        $instance->bouncedAt = Carbon::parse($payload['BouncedAt']);
+        $instance->inactive = $payload['Inactive'];
+        $instance->canActivate = $payload['CanActivate'];
+        $instance->jsonString = json_encode($payload);
 
         return $instance;
     }

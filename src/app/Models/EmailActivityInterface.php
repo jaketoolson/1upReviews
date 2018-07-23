@@ -14,4 +14,7 @@ interface EmailActivityInterface
     ];
 
     public function getEmailType(): string;
+    public function isDelivered(): bool;
+    public function isOpened(): bool;
+    public function isBounced(): bool;
 }

@@ -161,6 +161,7 @@ return [
         // OneUpReviews\Providers\BroadcastServiceProvider::class,
         OneUpReviews\Foundation\Providers\EventServiceProvider::class,
         OneUpReviews\Foundation\Providers\RouteServiceProvider::class,
+        OneUpReviews\Services\Postmark\PostmarkServiceProvider::class,
 
     ],
 

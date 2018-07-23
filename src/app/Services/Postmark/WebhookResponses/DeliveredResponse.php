@@ -44,18 +44,17 @@ class DeliveredResponse
      */
     private $jsonString;
 
-    public static function factory(string $jsonString): DeliveredResponse
+    public static function factory(array $payload): DeliveredResponse
     {
         $instance = new self();
-        $instance->jsonString = $jsonString;
-        $responseArray = json_decode($jsonString, true);
 
-        $instance->serverId = $responseArray['ServerID'];
-        $instance->messageId = $responseArray['MessageID'];
-        $instance->recipient = $responseArray['Recipient'];
-        $instance->tag = $responseArray['Tag'];
-        $instance->details = $responseArray['Details'];
-        $instance->deliveredAt = Carbon::parse($responseArray['DeliveredAt']);
+        $instance->serverId = $payload['ServerID'];
+        $instance->messageId = $payload['MessageID'];
+        $instance->recipient = $payload['Recipient'];
+        $instance->tag = $payload['Tag'];
+        $instance->details = $payload['Details'];
+        $instance->deliveredAt = Carbon::parse($payload['DeliveredAt']);
+        $instance->jsonString = json_encode($payload);
 
         return $instance;
     }

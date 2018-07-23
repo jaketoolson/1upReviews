@@ -24,10 +24,8 @@ use OneUpReviews\Models\Traits\Uuidable;
  * @property string body_text
  * @property string provider_message_id
  * @property string origin_message_id
- * @property null|string delivered_at
- * @property null|string bounced_at
- * @property null|string opened_at
  * @property null|string resent_at
+ * @property null|string status
  *
  * @property Client $client
  * @property EmailTemplate $emailTemplate
@@ -52,9 +50,6 @@ class CampaignEmail extends BaseEloquentModel
         'provider_message_id',
         'origin_message_id',
         'provider_response',
-        'delivered_at',
-        'bounced_at',
-        'opened_at',
         'resent_at',
     ];
 
@@ -70,6 +65,10 @@ class CampaignEmail extends BaseEloquentModel
         'tenant_id',
         'client_id',
         'sent_by',
+    ];
+
+    protected $appends = [
+        'status'
     ];
 
     public function tenant(): BelongsTo
@@ -104,16 +103,37 @@ class CampaignEmail extends BaseEloquentModel
 
     public function isDelivered(): bool
     {
-        return $this->delivered_at;
+        return $this->activities->filter(function (EmailActivityInterface $activity) {
+                return $activity->isDelivered();
+            })->count() >= 1;
     }
 
     public function isOpened(): bool
     {
-        return $this->opened_at;
+        return $this->activities->filter(function (EmailActivityInterface $activity) {
+                return $activity->isOpened();
+            })->count() >= 1;
     }
 
     public function isBounced(): bool
     {
-        return $this->bounced_at;
+        return $this->activities->filter(function (EmailActivityInterface $activity) {
+                return $activity->isBounced();
+            })->count() >= 1;
+    }
+
+    public function getStatusAttribute(): ?string
+    {
+        if ($this->isOpened()) {
+            return EmailActivityInterface::TYPE_OPENED;
+        }
+        if ($this->isDelivered()) {
+            return EmailActivityInterface::TYPE_DELIVERED;
+        }
+        if ($this->isBounced()) {
+            return EmailActivityInterface::TYPE_BOUNCED;
+        }
+
+        return null;
     }
 }
