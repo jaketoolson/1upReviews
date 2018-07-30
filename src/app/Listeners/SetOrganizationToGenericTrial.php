@@ -5,12 +5,13 @@
 
 namespace OneUpReviews\Listeners;
 
+use Carbon\Carbon;
 use OneUpReviews\Events\OrganizationCreatingEvent;
 
 class SetOrganizationToGenericTrial
 {
     public function handle(OrganizationCreatingEvent $organizationCreatingEvent): void
     {
-        $organizationCreatingEvent->getOrganization()->trial_ends_at = now()->addDays(10);
+        $organizationCreatingEvent->getOrganization()->trial_ends_at = Carbon::now()->addDays(10);
     }
 }
