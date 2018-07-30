@@ -6,9 +6,9 @@
 namespace OneUpReviews\Http\Controllers\Web\Account;
 
 use Log;
-use Illuminate\Http\Request;
 use OneUpReviews\Exceptions\UserEmailInvalidOrNonUniqueException;
 use OneUpReviews\Http\Controllers\Controller;
+use OneUpReviews\Http\Requests\AccountCreationRequest;
 use OneUpReviews\Models\TenantParams;
 use OneUpReviews\Models\UserParams;
 use OneUpReviews\Services\AccountService;
@@ -29,7 +29,7 @@ class RegisterController extends Controller
         return $this->view('account.register');
     }
 
-    public function store(Request $request)
+    public function store(AccountCreationRequest $request)
     {
         $tenantParams = new TenantParams($request->get('company_name'));
         $userParams = new UserParams(
