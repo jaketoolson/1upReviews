@@ -47,6 +47,10 @@ class Tenant extends BaseEloquentModel
         'trial_ends_at',
     ];
 
+    protected $with = [
+        'subscriptions',
+    ];
+
     public static function boot(): void
     {
         parent::boot();

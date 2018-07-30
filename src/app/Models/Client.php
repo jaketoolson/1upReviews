@@ -8,6 +8,7 @@ namespace OneUpReviews\Models;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use OneUpReviews\Models\Traits\BelongsToTenants;
 use OneUpReviews\Models\Traits\Uuidable;
 
 /**
@@ -24,7 +25,7 @@ use OneUpReviews\Models\Traits\Uuidable;
  */
 class Client extends BaseEloquentModel
 {
-    use SoftDeletes, Uuidable;
+    use BelongsToTenants, SoftDeletes, Uuidable;
 
     protected $table = 'clients';
 

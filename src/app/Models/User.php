@@ -58,7 +58,7 @@ class User extends BaseEloquentModel implements
     ];
 
     protected $with = [
-        'tenant'
+        'tenant',
     ];
 
     public function tenant(): BelongsTo

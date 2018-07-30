@@ -47,6 +47,6 @@ class RegisterController extends Controller
                 ->withInput($request->except(['password']));
         }
 
-        return $this->redirect('/account/dashboard');
+        return $this->redirect('/account/login');
     }
 }

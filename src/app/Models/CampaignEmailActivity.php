@@ -18,7 +18,7 @@ use OneUpReviews\Models\Traits\Uuidable;
  */
 class CampaignEmailActivity extends BaseEloquentModel implements EmailActivityInterface
 {
-    use BelongsToTenants, SoftDeletes, Uuidable;
+    use SoftDeletes, Uuidable;
 
     protected $table = 'campaign_email_activities';
 

@@ -26,7 +26,7 @@ class ClientController extends Controller
     public function store(Request $request)
     {
         Client::create([
-            'tenant_id' => 1100000,
+            'tenant_id' => auth()->user()->tenant_id,
             'first_name' => $request->get('first_name'),
             'last_name' => $request->get('last_name'),
             'email_address' => $request->get('email_address'),
