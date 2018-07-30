@@ -84,7 +84,8 @@ class User extends BaseEloquentModel implements
     public function getJWTCustomClaims(): array
     {
         return [
-            'tenant_id' => $this->tenant->id
+            'tenant_id' => $this->tenant->id,
+            'subscription_plan' => $this->tenant->subscription()
         ];
     }
 
