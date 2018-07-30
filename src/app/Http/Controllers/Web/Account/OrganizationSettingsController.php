@@ -5,7 +5,6 @@
 
 namespace OneUpReviews\Http\Controllers\Web\Account;
 
-use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Support\Facades\Auth;
 use OneUpReviews\Http\Controllers\Controller;
 use OneUpReviews\Http\Requests\OrganizationSettingsUpdateRequest;
@@ -24,13 +23,8 @@ class OrganizationSettingsController extends Controller
      */
     private $socialFocusService;
 
-    public function __construct(
-        ResponseFactory $responseFactory,
-        AccountService $accountService,
-        SocialFocusService $socialFocusService
-    ) {
-        parent::__construct($responseFactory);
-
+    public function __construct(AccountService $accountService, SocialFocusService $socialFocusService)
+    {
         $this->accountService = $accountService;
         $this->socialFocusService = $socialFocusService;
     }

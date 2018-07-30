@@ -7,7 +7,7 @@ namespace OneUpReviews\Exceptions;
 
 use Exception;
 
-class UserEmailInvalidOrNonUniqueException extends Exception
+class EmailAddressInvalidException extends Exception
 {
 
 }

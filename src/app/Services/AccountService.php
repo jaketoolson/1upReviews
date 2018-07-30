@@ -9,6 +9,8 @@ use DB;
 use Illuminate\Contracts\Hashing\Hasher;
 use OneUpReviews\Events\OrganizationCreatedEvent;
 use OneUpReviews\Events\OrganizationCreatingEvent;
+use OneUpReviews\Exceptions\EmailAddressAlreadyExists;
+use OneUpReviews\Exceptions\EmailAddressInvalidException;
 use OneUpReviews\Exceptions\UserEmailInvalidOrNonUniqueException;
 use OneUpReviews\Foundation\Exceptions\HashedPasswordsDoNotMatchException;
 use OneUpReviews\Models\Organization;
@@ -30,13 +32,18 @@ class AccountService
      * @param OrganizationParams $organizationParams
      * @param UserParams $userParams
      * @return User
-     * @throws UserEmailInvalidOrNonUniqueException
+     * @throws EmailAddressAlreadyExists
+     * @throws EmailAddressInvalidException
      * @throws Throwable
      */
     public function registerOrganizationAndUserAccount(OrganizationParams $organizationParams, UserParams $userParams): User
     {
-        if (! $this->checkIfEmailValidAndUnique($userParams->getEmailAddress())) {
-            throw new UserEmailInvalidOrNonUniqueException('Invalid email');
+        if (! $this->checkIfEmailValid($userParams->getEmailAddress())) {
+            throw new EmailAddressInvalidException("Invalid email used at registration: {$userParams->getEmailAddress()}");
+        }
+
+        if ($this->checkIfEmailAlreadyExists($userParams->getEmailAddress())) {
+            throw new EmailAddressAlreadyExists("Duplicate email attempted at registration: {$userParams->getEmailAddress()}");
         }
 
         return DB::transaction(function() use ($organizationParams, $userParams) {
@@ -131,15 +138,6 @@ class AccountService
         $exists = User::where('email', $email)->first();
 
         return $exists ? true : false;
-    }
-
-    private function checkIfEmailValidAndUnique(string $email): bool
-    {
-        if (! $this->checkIfEmailValid($email)) {
-            return false;
-        }
-
-        return $this->checkIfEmailAlreadyExists($email);
     }
 
     private function passwordMatchesExistingForUser(int $userId, string $password): bool

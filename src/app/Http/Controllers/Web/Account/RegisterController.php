@@ -6,7 +6,6 @@
 namespace OneUpReviews\Http\Controllers\Web\Account;
 
 use Log;
-use OneUpReviews\Exceptions\UserEmailInvalidOrNonUniqueException;
 use OneUpReviews\Http\Controllers\Controller;
 use OneUpReviews\Http\Requests\AccountCreationRequest;
 use OneUpReviews\Models\OrganizationParams;
@@ -41,7 +40,7 @@ class RegisterController extends Controller
 
         try {
             $this->accountService->registerOrganizationAndUserAccount($organizationParams, $userParams);
-        } catch (UserEmailInvalidOrNonUniqueException | Throwable $e) {
+        } catch (Throwable $e) {
             Log::error($e);
             return $this->redirect('/account/register')
                 ->withInput($request->except(['password']));

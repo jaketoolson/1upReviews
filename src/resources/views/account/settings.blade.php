@@ -19,10 +19,8 @@
             <label for="email" class="font-weight-medium">Email address</label>
             <input tabindex="1" class="form-control" type="text" id="email" name="email" value="{{ $user->email }}"  placeholder="Enter your email">
         </div>
-        <div class="form-group row text-center mt-4">
-            <div class="col-12">
-                <button class="btn btn-block btn-success waves-effect waves-light mb-2" type="submit">Update profile</button>
-            </div>
+        <div class="form-group mt-4">
+            <button class="btn btn-success waves-effect waves-light mb-2" type="submit">Update profile</button>
         </div>
     </form>
 

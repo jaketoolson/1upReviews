@@ -17,10 +17,8 @@
             <label for="new_password_confirmation" class="font-weight-medium">Confirm password</label>
             <input tabindex="1" class="form-control" type="password" id="new_password_confirmation" name="new_password_confirmation"  placeholder="Confirm new password">
         </div>
-        <div class="form-group row text-center mt-4">
-            <div class="col-12">
-                <button class="btn btn-block btn-success waves-effect waves-light mb-2" type="submit">Update password</button>
-            </div>
+        <div class="form-group mt-4">
+            <button class="btn btn-success waves-effect waves-light mb-2" type="submit">Update password</button>
         </div>
     </form>
 

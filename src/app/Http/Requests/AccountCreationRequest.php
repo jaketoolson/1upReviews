@@ -17,9 +17,9 @@ class AccountCreationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'company_name' => 'required|string',
-            'first_name' => 'required|string',
-            'last_name' => 'required|string',
+            'company_name' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
             'email' => 'required|email',
             'password' => 'required|string',
         ];

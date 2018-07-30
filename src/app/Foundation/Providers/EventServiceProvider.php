@@ -13,7 +13,7 @@ use OneUpReviews\Events\OrganizationCreatingEvent;
 use OneUpReviews\Listeners\MailSending;
 use OneUpReviews\Listeners\MailSent;
 use OneUpReviews\Listeners\SendCampaignEmailForResponse;
-use OneUpReviews\Listeners\SetTenantToGenericTrial;
+use OneUpReviews\Listeners\SetOrganizationToGenericTrial;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -28,7 +28,7 @@ class EventServiceProvider extends ServiceProvider
         ],
 
         OrganizationCreatingEvent::class => [
-            SetTenantToGenericTrial::class,
+            SetOrganizationToGenericTrial::class,
         ],
 
         MessageSending::class => [

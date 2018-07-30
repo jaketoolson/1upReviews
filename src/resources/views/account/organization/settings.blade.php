@@ -17,10 +17,8 @@
                 @endforeach
             </select>
         </div>
-        <div class="form-group row text-center mt-4">
-            <div class="col-12">
-                <button class="btn btn-block btn-success waves-effect waves-light mb-2" type="submit">Update organization</button>
-            </div>
+        <div class="form-group mt-4">
+            <button class="btn btn-success waves-effect waves-light mb-2" type="submit">Update organization</button>
         </div>
     </form>
 
