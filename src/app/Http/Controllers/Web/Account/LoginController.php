@@ -24,12 +24,14 @@ class LoginController extends Controller
             return $this->redirect('/account/login');
         }
 
+        $request->session()->regenerate();
+
         return $this->redirect('/');
     }
 
     public function logout(Request $request)
     {
-        auth('web')->logout();
+        auth()->logout();
 
         $request->session()->invalidate();
 

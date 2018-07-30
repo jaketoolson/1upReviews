@@ -19,6 +19,7 @@ use OneUpReviews\Models\Traits\Uuidable;
 
 /**
  * @property int id
+ * @property int tenant_id
  * @property string first_name
  * @property string last_name
  * @property string email
@@ -85,5 +86,10 @@ class User extends BaseEloquentModel implements
         return [
             'tenant_id' => $this->tenant->id
         ];
+    }
+
+    public function getTenantId(): int
+    {
+        return $this->tenant_id;
     }
 }
