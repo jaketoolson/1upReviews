@@ -1,8 +1,8 @@
 <?php
 
-Route::get('/', function () {
-    return view('layouts.main');
-});
+Route::get('/', 'HomeController@index')->middleware('auth');
+
+Route::get('/account/dashboard', 'Account\DashboardController@index');
 
 Route::get('/account/login', 'Account\LoginController@index');
 Route::post('/account/login', 'Account\LoginController@login');
