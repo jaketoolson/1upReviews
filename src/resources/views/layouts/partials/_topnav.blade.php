@@ -68,18 +68,8 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown ">
                     <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <i class="dripicons-user"></i> <span>My Account</span>
-                    </a>
-
-                    <!-- item-->
                     <a href="/account/settings" class="dropdown-item notify-item">
                         <i class="dripicons-gear"></i> <span>Settings</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <i class="dripicons-help"></i> <span>Support</span>
                     </a>
 
                     <!-- item-->

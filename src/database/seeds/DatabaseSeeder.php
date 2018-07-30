@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
          $this->call([
              CreateAdminData::class,
              CreateStripePlans::class,
+             CreateSocialFocusSeeder::class,
          ]);
     }
 

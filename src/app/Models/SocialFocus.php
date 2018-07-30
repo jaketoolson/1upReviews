@@ -19,7 +19,7 @@ class SocialFocus extends BaseEloquentModel
    protected $table = 'social_focus';
 
    protected $appends = [
-       'case_sensitive_name'
+       'friendly_name',
    ];
 
    protected $fillable = [
@@ -32,7 +32,7 @@ class SocialFocus extends BaseEloquentModel
        'id',
    ];
 
-    public function getCaseSensitiveNameAttribute(): string
+    public function getFriendlyNameAttribute(): string
     {
         return ucfirst($this->name);
     }

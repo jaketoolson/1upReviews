@@ -3,15 +3,36 @@
 @section('content')
 
     <div class="inbox-leftbar">
-        <div class="mail-list">
+        <div class="mail-list mb-3">
+            <h6 class="list-group-item-heading list-group-item">
+                Personal
+            </h6>
             <a href="/account/settings" class="list-group-item ">
-                Profile Settings
+                Settings
             </a>
             <a href="/account/password" class="list-group-item ">
-                Change Password
+                Password
             </a>
             <a href="#" class="list-group-item ">
-                Organization Settings
+                Email Notifications
+            </a>
+        </div>
+
+        <div class="mail-list">
+            <h6 class="list-group-item-heading list-group-item">
+                Organization
+            </h6>
+            <a href="/account/organization/settings" class="list-group-item ">
+                Settings
+            </a>
+            <a href="/account/organization/settings" class="list-group-item ">
+                Subscription
+            </a>
+            <a href="/account/password" class="list-group-item ">
+                Credit Card
+            </a>
+            <a href="#" class="list-group-item ">
+                Receipts
             </a>
         </div>
     </div>

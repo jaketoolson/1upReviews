@@ -3,7 +3,7 @@
  * Copyright (c) 2017. Jake Toolson <jaketoolson@gmail.com>
  */
 
-namespace Orion\OneUpReviews\Services;
+namespace OneUpReviews\Services;
 
 use Exception;
 use OneUpReviews\Models\Client;

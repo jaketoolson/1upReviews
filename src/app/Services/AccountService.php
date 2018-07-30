@@ -7,8 +7,6 @@ namespace OneUpReviews\Services;
 
 use DB;
 use Illuminate\Contracts\Hashing\Hasher;
-use Illuminate\Hashing\HashManager;
-use Illuminate\Support\Facades\Hash;
 use OneUpReviews\Events\OrganizationCreatedEvent;
 use OneUpReviews\Events\OrganizationCreatingEvent;
 use OneUpReviews\Exceptions\UserEmailInvalidOrNonUniqueException;
@@ -67,7 +65,7 @@ class AccountService
      * @return bool
      * @throws UserEmailInvalidOrNonUniqueException
      */
-    public function updateAccount(int $userId, string $newFirstName, string $newLastName, string $newEmailAddress): bool
+    public function updateUser(int $userId, string $newFirstName, string $newLastName, string $newEmailAddress): bool
     {
         if (! $this->checkIfEmailValid($newEmailAddress)) {
             throw new UserEmailInvalidOrNonUniqueException('Invalid email');
@@ -78,7 +76,7 @@ class AccountService
         return $user->update([
             'first_name' => $newFirstName,
             'last_name' => $newLastName,
-            'email' => $newEmailAddress
+            'email' => $newEmailAddress,
         ]);
     }
 
@@ -98,7 +96,17 @@ class AccountService
         $user = User::findOrFail($userId);
 
         return $user->update([
-            'password' => bcrypt($newPassword)
+            'password' => bcrypt($newPassword),
+        ]);
+    }
+
+    public function updateOrganization(int $organizationId, string $name, int $socialFocusId): bool
+    {
+        $organization = Organization::findOrFail($organizationId);
+
+        return $organization->update([
+            'name' => $name,
+            'social_focus_id' => $socialFocusId,
         ]);
     }
 

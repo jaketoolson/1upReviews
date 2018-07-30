@@ -31,7 +31,7 @@ class SettingsController extends Controller
 
     public function update(ProfileSettingsUpdateRequest $request)
     {
-        $this->accountService->updateAccount(
+        $this->accountService->updateUser(
             Auth::getUser()->id,
             $request->get('first_name'),
             $request->get('last_name'),

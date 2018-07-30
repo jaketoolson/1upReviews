@@ -8,12 +8,20 @@ Route::post('/account/register', 'Account\RegisterController@store');
 
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/', 'HomeController@index');
+    Route::post('/account/logout', 'Account\LoginController@logout');
     Route::get('/account/dashboard', 'Account\DashboardController@index');
+
+    // Settings
     Route::get('/account/settings', 'Account\SettingsController@index');
     Route::patch('/account/settings', 'Account\SettingsController@update');
+
+    // Password
     Route::get('/account/password', 'Account\PasswordController@index');
     Route::patch('/account/password', 'Account\PasswordController@update');
-    Route::post('/account/logout', 'Account\LoginController@logout');
+
+    // Organization settings
+    Route::get('/account/organization/settings', 'Account\OrganizationSettingsController@index');
+    Route::patch('/account/organization/settings', 'Account\OrganizationSettingsController@update');
 
     Route::get('/emails/templates', 'EmailTemplateController@index');
     Route::get('/emails/templates/create', 'EmailTemplateController@create');

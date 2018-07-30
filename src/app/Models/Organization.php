@@ -81,7 +81,7 @@ class Organization extends BaseEloquentModel
     {
         return $this->belongsToMany(
             SocialFocus::class,
-            'tenant_social_focus_history',
+            'organization_social_focus_history',
             'organization_id',
             'social_focus_id'
         )->withTimestamps();
