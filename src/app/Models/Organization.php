@@ -24,14 +24,16 @@ use Illuminate\Database\Eloquent\Collection;
  * @property string|null trial_ends_at
  *
  * @property SocialFocus socialFocus
- * @property TenantMeta meta
+ * @property OrganizationMeta meta
  * @property Collection|SocialFocus[] focusHistory
  * @property Collection|CampaignEmail[] campaignEmails
  * @property Collection|User[] users
  */
-class Tenant extends BaseEloquentModel
+class Organization extends BaseEloquentModel
 {
     use Billable, Uuidable;
+
+    protected $table = 'organizations';
 
     protected $fillable = [
         'uuid',
@@ -55,7 +57,7 @@ class Tenant extends BaseEloquentModel
     {
         parent::boot();
 
-        static::saving(function(Tenant $model){
+        static::saving(function(Organization $model){
             $originalFocus = $model->getOriginal('social_focus_id');
             $newFocus = $model->social_focus_id;
 
@@ -67,7 +69,7 @@ class Tenant extends BaseEloquentModel
 
     public function meta(): HasOne
     {
-        return $this->hasOne(TenantMeta::class, 'tenant_id');
+        return $this->hasOne(OrganizationMeta::class, 'organization_id');
     }
 
     public function socialFocus(): BelongsTo
@@ -80,19 +82,19 @@ class Tenant extends BaseEloquentModel
         return $this->belongsToMany(
             SocialFocus::class,
             'tenant_social_focus_history',
-            'tenant_id',
+            'organization_id',
             'social_focus_id'
         )->withTimestamps();
     }
 
     public function campaignEmails(): HasMany
     {
-        return $this->hasMany(CampaignEmail::class, 'tenant_id');
+        return $this->hasMany(CampaignEmail::class, 'organization_id');
     }
 
     public function users(): HasMany
     {
-        return $this->hasMany(User::class, 'tenant_id');
+        return $this->hasMany(User::class, 'organization_id');
     }
 
     public function getSocialFocusRedirector(): ?SocialMeta

@@ -19,7 +19,7 @@ use OneUpReviews\Models\Traits\Uuidable;
 
 /**
  * @property int id
- * @property int tenant_id
+ * @property int organization_id
  * @property string first_name
  * @property string last_name
  * @property string email
@@ -27,7 +27,7 @@ use OneUpReviews\Models\Traits\Uuidable;
  * @property bool is_superadmin
  * @property string full_name
  *
- * @property Tenant tenant
+ * @property Organization organization
  */
 class User extends BaseEloquentModel implements
     AuthenticatableContract,
@@ -39,7 +39,7 @@ class User extends BaseEloquentModel implements
 
     protected $fillable = [
         'uuid',
-        'tenant_id',
+        'organization_id',
         'first_name',
         'last_name',
         'email',
@@ -58,12 +58,12 @@ class User extends BaseEloquentModel implements
     ];
 
     protected $with = [
-        'tenant',
+        'organization',
     ];
 
-    public function tenant(): BelongsTo
+    public function organization(): BelongsTo
     {
-        return $this->belongsTo(Tenant::class, 'tenant_id');
+        return $this->belongsTo(Organization::class, 'organization_id');
     }
 
     public function getFullNameAttribute(): string
@@ -84,13 +84,13 @@ class User extends BaseEloquentModel implements
     public function getJWTCustomClaims(): array
     {
         return [
-            'tenant_id' => $this->tenant->id,
-            'subscription_plan' => $this->tenant->subscription()
+            'organization_id' => $this->organization->id,
+            'subscription_plan' => $this->organization->subscription()
         ];
     }
 
-    public function getTenantId(): int
+    public function getOrganizationId(): int
     {
-        return $this->tenant_id;
+        return $this->organization_id;
     }
 }

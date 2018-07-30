@@ -16,12 +16,17 @@ class CreateEmailInteractionTbl extends Migration
         Schema::create('email_interaction', function (Blueprint $table){
             $table->bigIncrements('id');
             $table->string('uuid');
-            $table->bigInteger('tenant_id')->unsigned();
+            $table->bigInteger('organization_id')->unsigned();
             $table->bigInteger('email_id')->unsigned();
             $table->bigInteger('social_focus_id')->unsigned();
             $table->text('focus_logged')->nullable()->default(null);
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('organization_id')
+                ->references('id')
+                ->on('organizations')
+                ->onDelete('cascade');
         });
     }
 

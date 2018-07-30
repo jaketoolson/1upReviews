@@ -13,7 +13,7 @@ use OneUpReviews\Models\Traits\Uuidable;
 
 /**
  * @property int id
- * @property int tenant_id
+ * @property int organization_id
  * @property string first_name
  * @property string last_name
  * @property string|null business_name
@@ -39,7 +39,7 @@ class Client extends BaseEloquentModel
 
     protected $fillable = [
         'uuid',
-        'tenant_id',
+        'organization_id',
         'first_name',
         'last_name',
         'business_name',
@@ -48,7 +48,7 @@ class Client extends BaseEloquentModel
 
     protected $hidden = [
         'id',
-        'tenant_id',
+        'organization_id',
     ];
 
     public function emails(): HasMany

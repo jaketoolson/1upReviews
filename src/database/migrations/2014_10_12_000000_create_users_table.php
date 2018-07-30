@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->binary('uuid');
-            $table->bigInteger('tenant_id', false, true);
+            $table->bigInteger('organization_id', false, true);
             $table->bigInteger('created_by', false, true)->nullable()->default(null);
             $table->string('first_name');
             $table->string('last_name');
@@ -27,9 +27,9 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
 
-            $table->foreign('tenant_id')
+            $table->foreign('organization_id')
                 ->references('id')
-                ->on('tenants')
+                ->on('organizations')
                 ->onDelete('cascade');
         });
 

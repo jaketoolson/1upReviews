@@ -5,27 +5,27 @@
 
 namespace OneUpReviews\Events;
 
-use OneUpReviews\Models\Tenant;
+use OneUpReviews\Models\Organization;
 use OneUpReviews\Models\User;
 
-class TenantAddedUserEvent
+class OrganizationAddedUserEvent
 {
-    private $tenant;
+    private $organization;
     private $newUser;
     private $invitedBy;
     private $temporaryPassword;
 
-    public function __construct(Tenant $tenant, User $newUser, User $invitedBy, string $temporaryPassword)
+    public function __construct(Organization $organization, User $newUser, User $invitedBy, string $temporaryPassword)
     {
-        $this->tenant = $tenant;
+        $this->organization = $organization;
         $this->newUser = $newUser;
         $this->invitedBy = $invitedBy;
         $this->temporaryPassword = $temporaryPassword;
     }
 
-    public function getTenant(): Tenant
+    public function getOrganization(): Organization
     {
-        return $this->tenant;
+        return $this->organization;
     }
 
     public function getNewUser(): User

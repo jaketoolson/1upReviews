@@ -29,6 +29,9 @@
                    id="password"
                    placeholder="Enter your password">
         </div>
+        <div class="form-group mb-3">
+            <p class="text-center">By clicking Create Account, I agree to the Terms of service and Policy Privacy.</p>
+        </div>
         <div class="form-group row text-center mt-4">
             <div class="col-12">
                 <button class="btn btn-block btn-success waves-effect waves-light mb-2" type="submit">Create Account</button>

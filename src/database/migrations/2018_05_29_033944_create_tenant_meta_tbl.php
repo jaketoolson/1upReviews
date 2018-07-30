@@ -16,7 +16,7 @@ class CreateTenantMetaTbl extends Migration
         Schema::create('tenant_meta', function(Blueprint $table){
             $table->bigIncrements('id');
             $table->binary('uuid');
-            $table->bigInteger('tenant_id', false, true);
+            $table->bigInteger('organization_id', false, true);
             $table->text('social_order_default')->nullable()->default(null);
             $table->string('website_url')->nullable()->default(null);
             $table->string('facebook_url')->nullable()->default(null);
@@ -28,7 +28,7 @@ class CreateTenantMetaTbl extends Migration
             $table->string('yelp_url')->nullable()->default(null);
             $table->timestamps();
 
-            $table->foreign('tenant_id')->references('id')->on('tenants')->onDelete('cascade');
+            $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');
         });
     }
 

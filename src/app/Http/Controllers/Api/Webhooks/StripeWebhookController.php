@@ -51,10 +51,10 @@ class StripeWebhookController extends Controller
 
     protected function handleCustomerSubscriptionDeleted(array $payload): Response
     {
-        $tenant = $this->getTenantByStripeId($payload['data']['object']['customer']);
+        $organization = $this->getOrganizationByStripeId($payload['data']['object']['customer']);
 
-        if ($tenant) {
-            $tenant->subscriptions->filter(function (Subscription $subscription) use ($payload) {
+        if ($organization) {
+            $organization->subscriptions->filter(function (Subscription $subscription) use ($payload) {
                 return $subscription->stripe_id === $payload['data']['object']['id'];
             })->each(function (Subscription $subscription) {
                 $subscription->markAsCancelled();
@@ -64,7 +64,7 @@ class StripeWebhookController extends Controller
         return new Response('Webhook Handled', 200);
     }
 
-    protected function getTenantByStripeId(string $stripeId): ?Billable
+    protected function getOrganizationByStripeId(string $stripeId): ?Billable
     {
         $model = config('services.stripe.model');
 

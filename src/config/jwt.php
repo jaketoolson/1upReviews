@@ -153,7 +153,7 @@ return [
         'nbf',
         'sub',
         'jti',
-        'tenant_id',
+        'organization_id',
     ],
 
     /*

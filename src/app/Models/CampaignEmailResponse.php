@@ -10,7 +10,7 @@ use OneUpReviews\Models\Traits\Uuidable;
 
 /**
  * @property int $id
- * @property int tenant_id
+ * @property int organization_id
  * @property int campaign_email_io
  * @property string focus_logged
  */
@@ -22,7 +22,7 @@ class CampaignEmailResponse extends BaseEloquentModel
 
     protected $fillable = [
         'uuid',
-        'tenant_id',
+        'organization_id',
         'campaign_email_id',
         'social_focus_id',
         'focus_logged'
@@ -33,13 +33,13 @@ class CampaignEmailResponse extends BaseEloquentModel
      */
     protected $hidden = [
         'id',
-        'tenant_id',
+        'organization_id',
         'email_id',
         'social_focus_id'
     ];
 
     /**
-     * @param int    $tenantId
+     * @param int    $organizationId
      * @param int    $emailId
      * @param int    $socialFocusId
      * @param array  $focusLogged
@@ -47,14 +47,14 @@ class CampaignEmailResponse extends BaseEloquentModel
      * @return CampaignEmailResponse
      */
     public static function factory(
-        int $tenantId,
+        int $organizationId,
         int $emailId,
         int $socialFocusId,
         array $focusLogged = []
     ): CampaignEmailResponse
     {
         return self::create([
-            'tenant_id' => $tenantId,
+            'organization_id' => $organizationId,
             'email_id' => $emailId,
             'social_focus_id' => $socialFocusId,
             'focus_logged' => $focusLogged

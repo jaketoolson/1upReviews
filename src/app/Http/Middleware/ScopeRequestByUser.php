@@ -29,9 +29,9 @@ class ScopeRequestByUser
      */
     public function handle($request, Closure $next)
     {
-        if ($this->guard->check() && $tenantId = $this->guard->user()->getTenantId()) {
+        if ($this->guard->check() && $organizationId = $this->guard->user()->getOrganizationId()) {
 //            \Illuminate\Database\Eloquent\Model::clearBootedModels();
-            $this->tenantManager->addTenant('tenant_id', $tenantId);
+            $this->tenantManager->addTenant('organization_id', $organizationId);
         }
 
         return $next($request);

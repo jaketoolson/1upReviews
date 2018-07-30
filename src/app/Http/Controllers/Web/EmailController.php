@@ -27,7 +27,7 @@ class EmailController extends Controller
 
     public function index()
     {
-        $campaignEmails = CampaignEmail::with(['client', 'emailTemplate', 'tenant'])->get()->sortByDesc('created_at');
+        $campaignEmails = CampaignEmail::with(['client', 'emailTemplate', 'organization'])->get()->sortByDesc('created_at');
 
         return $this->view('emails.campaigns.index', compact('campaignEmails'));
     }
@@ -43,12 +43,12 @@ class EmailController extends Controller
     public function store(Request $request)
     {
         $user = User::first();
-        $tenant = $user->tenant;
+        $org = $user->organization;
         $client = Client::find($request->get('client_id'));
         $emailTemplate = EmailTemplate::find($request->get('email_template_id'));
 
         $this->campaignEmailService->create(
-            $tenant,
+            $org,
             $client,
             $user,
             $emailTemplate

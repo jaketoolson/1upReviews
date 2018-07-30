@@ -13,7 +13,7 @@ class TenantTbl extends Migration
      */
     public function up()
     {
-        Schema::create('tenants', function(Blueprint $table){
+        Schema::create('organizations', function(Blueprint $table){
             $table->bigIncrements('id');
             $table->binary('uuid');
             $table->string('name');
@@ -21,7 +21,7 @@ class TenantTbl extends Migration
             $table->timestamps();
         });
 
-        DB::statement('ALTER TABLE tenants AUTO_INCREMENT=1100000');
+        DB::statement('ALTER TABLE organizations AUTO_INCREMENT=1100000');
     }
 
     /**

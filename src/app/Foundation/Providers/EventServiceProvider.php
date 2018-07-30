@@ -9,7 +9,7 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 use Illuminate\Mail\Events\MessageSending;
 use Illuminate\Mail\Events\MessageSent;
 use OneUpReviews\Events\CampaignEmailCreated;
-use OneUpReviews\Events\TenantCreatingEvent;
+use OneUpReviews\Events\OrganizationCreatingEvent;
 use OneUpReviews\Listeners\MailSending;
 use OneUpReviews\Listeners\MailSent;
 use OneUpReviews\Listeners\SendCampaignEmailForResponse;
@@ -27,7 +27,7 @@ class EventServiceProvider extends ServiceProvider
             SendCampaignEmailForResponse::class,
         ],
 
-        TenantCreatingEvent::class => [
+        OrganizationCreatingEvent::class => [
             SetTenantToGenericTrial::class,
         ],
 

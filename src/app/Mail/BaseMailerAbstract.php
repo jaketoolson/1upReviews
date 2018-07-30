@@ -26,7 +26,7 @@ abstract class BaseMailerAbstract extends Mailable implements MailHeaders
 
         $this->withSwiftMessage(function(Swift_Message $message) use ($email) {
             $message->getHeaders()->addTextHeader(self::HEADER_CAMPAIGN_EMAIL_ID, $email->id);
-            $message->getHeaders()->addTextHeader(self::HEADER_TENANT_ID, $email->tenant_id);
+            $message->getHeaders()->addTextHeader(self::HEADER_ORGANIZATION_ID, $email->organization_id);
 
             return $message;
         });

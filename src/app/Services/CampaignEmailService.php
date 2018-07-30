@@ -11,7 +11,7 @@ use OneUpReviews\Models\EmailTemplate;
 use OneUpReviews\Models\User;
 use OneUpReviews\Models\CampaignEmail;
 use OneUpReviews\Models\Client;
-use OneUpReviews\Models\Tenant;
+use OneUpReviews\Models\Organization;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -24,14 +24,14 @@ class CampaignEmailService
     }
 
     /**
-     * @param Tenant $tenant
+     * @param Organization $organization
      * @param Client $client
      * @param User $sentBy
      * @param EmailTemplate $emailTemplate
      * @return CampaignEmail
      */
     public function create(
-        Tenant $tenant,
+        Organization $organization,
         Client $client,
         User $sentBy,
         EmailTemplate $emailTemplate
@@ -42,7 +42,7 @@ class CampaignEmailService
         $subject = $emailTemplate->subject;
 
         $email = CampaignEmail::create([
-            'tenant_id' => $tenant->id,
+            'organization_id' => $organization->id,
             'client_id' => $client->id,
             'sent_by' => $sentBy->id,
             'email_template_id' => $emailTemplate->id,
@@ -68,10 +68,10 @@ class CampaignEmailService
     {
         return CampaignEmail::where($column, '=', $value)
             ->with([
-                'tenant',
+                'organization',
                 'client',
             ])
-            ->withoutGlobalScope('tenant_id')
+            ->withoutGlobalScope('organization_id')
             ->firstOrFail();
     }
 
@@ -96,9 +96,9 @@ class CampaignEmailService
     {
         return CampaignEmail::where($column, '=', $value)
             ->with([
-                'tenant',
+                'organization',
                 'client',
-                'tenant.meta',
+                'organization.meta',
                 'emailCampaign',
                 'emailCampaign.socialFocus'
             ])

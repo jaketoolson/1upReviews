@@ -9,14 +9,14 @@ use OneUpReviews\Models\Traits\Uuidable;
 
 /**
  * @property array social_order_default
- * @property int tenant_id
+ * @property int organization_id
  * @property string|null website_url
  * @property string|null facebook_url
  * @property string|null twitter_url
  * @property string|null google_url
  * @property string|null linkedin_url
  */
-class TenantMeta extends BaseEloquentModel
+class OrganizationMeta extends BaseEloquentModel
 {
     use Uuidable;
 
@@ -26,11 +26,11 @@ class TenantMeta extends BaseEloquentModel
         3 => 'google'
     ];
 
-    protected $table = 'tenant_meta';
+    protected $table = 'organization_meta';
 
     protected $fillable = [
         'social_order_default',
-        'tenant_id',
+        'organization_id',
         'website_url',
         'facebook_url',
         'twitter_url',

@@ -26,7 +26,7 @@ trait BelongsToTenants
         static::$landlord = app(TenantManager::class);
 
         if (Auth::check()) {
-            static::$landlord->addTenant('tenant_id', Auth::user()->getTenantId());
+            static::$landlord->addTenant('organization_id', Auth::user()->getOrganizationId());
         }
 
         static::$landlord->applyTenantScopes(new static());

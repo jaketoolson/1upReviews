@@ -13,7 +13,7 @@ class CashierTables extends Migration
      */
     public function up()
     {
-        Schema::table('tenants', function(Blueprint $table){
+        Schema::table('organizations', function(Blueprint $table){
             $table->string('stripe_id')->nullable();
             $table->string('card_brand')->nullable();
             $table->string('card_last_four')->nullable();
@@ -22,7 +22,7 @@ class CashierTables extends Migration
 
         Schema::create('subscriptions', function(Blueprint $table){
             $table->increments('id');
-            $table->unsignedInteger('tenant_id');
+            $table->unsignedInteger('organization_id');
             $table->string('name');
             $table->string('stripe_id');
             $table->string('stripe_plan');

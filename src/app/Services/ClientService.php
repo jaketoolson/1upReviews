@@ -6,7 +6,7 @@
 namespace Orion\OneUpReviews\Services;
 
 use Exception;
-use Orion\OneUpReviews\Models\Client;
+use OneUpReviews\Models\Client;
 use Illuminate\Database\Eloquent\Collection;
 
 class ClientService

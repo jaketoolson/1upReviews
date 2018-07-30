@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use OneUpReviews\Models\Tenant;
+use OneUpReviews\Models\Organization;
 use OneUpReviews\Models\User;
 
 class CreateAdminData extends Seeder
@@ -13,7 +13,7 @@ class CreateAdminData extends Seeder
      */
     public function run()
     {
-        $tenant = Tenant::create([
+        $org = Organization::create([
             'name' => 'Orion - Admins'
         ]);
 
@@ -22,7 +22,7 @@ class CreateAdminData extends Seeder
             'last_name' => 'Toolson',
             'email' => 'jaketoolson@gmail.com',
             'password' => bcrypt('testing1234'),
-            'tenant_id' => $tenant->id
+            'organization_id' => $org->id
         ]);
     }
 }

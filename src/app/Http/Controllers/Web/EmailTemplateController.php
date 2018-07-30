@@ -26,7 +26,7 @@ class EmailTemplateController extends Controller
     public function store(EmailTemplateCreationRequest $request)
     {
         EmailTemplate::create([
-            'tenant_id' => auth()->user()->tenant_id,
+            'organization_id' => auth()->user()->organization_id,
             'name' => $request->get('name'),
             'subject' => $request->get('subject'),
             'body_html' => $request->get('body')

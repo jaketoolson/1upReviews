@@ -16,7 +16,7 @@ class CreateEmailTemplatesTbl extends Migration
         Schema::create('email_templates', function(Blueprint $table){
             $table->bigIncrements('id');
             $table->binary('uuid');
-            $table->bigInteger('tenant_id', false, true);
+            $table->bigInteger('organization_id', false, true);
             $table->string('name');
             $table->string('subject');
             $table->text('body_html');
@@ -24,7 +24,7 @@ class CreateEmailTemplatesTbl extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('tenant_id')->references('id')->on('tenants')->onDelete('cascade');
+            $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');
         });
 
         DB::statement('ALTER TABLE email_templates AUTO_INCREMENT=1100000');

@@ -6,11 +6,11 @@
 namespace OneUpReviews\Services;
 
 use DB;
-use OneUpReviews\Events\TenantCreatedEvent;
-use OneUpReviews\Events\TenantCreatingEvent;
+use OneUpReviews\Events\OrganizationCreatedEvent;
+use OneUpReviews\Events\OrganizationCreatingEvent;
 use OneUpReviews\Exceptions\UserEmailInvalidOrNonUniqueException;
-use OneUpReviews\Models\Tenant;
-use OneUpReviews\Models\TenantParams;
+use OneUpReviews\Models\Organization;
+use OneUpReviews\Models\OrganizationParams;
 use OneUpReviews\Models\User;
 use OneUpReviews\Models\UserParams;
 use Throwable;
@@ -18,40 +18,40 @@ use Throwable;
 class AccountService
 {
     /**
-     * @param TenantParams $tenantParams
+     * @param OrganizationParams $organizationParams
      * @param UserParams $userParams
      * @return User
      * @throws UserEmailInvalidOrNonUniqueException
      * @throws Throwable
      */
-    public function registerTenantAndUserAccount(TenantParams $tenantParams, UserParams $userParams): User
+    public function registerTenantAndUserAccount(OrganizationParams $organizationParams, UserParams $userParams): User
     {
         if (! $this->checkIfEmailValidAndUnique($userParams->getEmailAddress())) {
             throw new UserEmailInvalidOrNonUniqueException('Invalid email');
         }
 
-        return DB::transaction(function() use ($tenantParams, $userParams) {
-            $tenant = new Tenant([
-                'name' => $tenantParams->getCompanyName(),
+        return DB::transaction(function() use ($organizationParams, $userParams) {
+            $organization = new Organization([
+                'name' => $organizationParams->getName(),
             ]);
 
-            event(new TenantCreatingEvent($tenant));
+            event(new OrganizationCreatingEvent($organization));
 
-            $tenant->save();
+            $organization->save();
 
-            $user = $this->makeUser($tenant->id, $userParams);
+            $user = $this->makeUser($organization->id, $userParams);
             $user->save();
 
-            event(new TenantCreatedEvent($user->tenant->id, $user->id));
+            event(new OrganizationCreatedEvent($user->organization->id, $user->id));
 
             return $user;
         });
     }
 
-    private function makeUser(int $tenantId, UserParams $userParams): User
+    private function makeUser(int $organizationId, UserParams $userParams): User
     {
         return new User([
-            'tenant_id' => $tenantId,
+            'organization_id' => $organizationId,
             'first_name' => $userParams->getFirstName(),
             'last_name' => $userParams->getLastName(),
             'email' => $userParams->getEmailAddress(),

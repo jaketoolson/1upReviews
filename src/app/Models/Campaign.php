@@ -11,7 +11,7 @@ use OneUpReviews\Models\Traits\Uuidable;
 /**
  * @property int id
  * @property string name
- * @property int tenant_id
+ * @property int organization_id
  * @property string|null description
  */
 class Campaign extends BaseEloquentModel
@@ -23,7 +23,7 @@ class Campaign extends BaseEloquentModel
     protected $fillable = [
         'uuid',
         'name',
-        'tenant_id',
+        'organization_id',
         'description',
     ];
 }

@@ -9,7 +9,7 @@ use Log;
 use OneUpReviews\Exceptions\UserEmailInvalidOrNonUniqueException;
 use OneUpReviews\Http\Controllers\Controller;
 use OneUpReviews\Http\Requests\AccountCreationRequest;
-use OneUpReviews\Models\TenantParams;
+use OneUpReviews\Models\OrganizationParams;
 use OneUpReviews\Models\UserParams;
 use OneUpReviews\Services\AccountService;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,7 +31,7 @@ class RegisterController extends Controller
 
     public function store(AccountCreationRequest $request)
     {
-        $tenantParams = new TenantParams($request->get('company_name'));
+        $organizationParams = new OrganizationParams($request->get('company_name'));
         $userParams = new UserParams(
             $request->get('first_name'),
             $request->get('last_name'),
@@ -40,7 +40,7 @@ class RegisterController extends Controller
         );
 
         try {
-            $this->accountService->registerTenantAndUserAccount($tenantParams, $userParams);
+            $this->accountService->registerTenantAndUserAccount($organizationParams, $userParams);
         } catch (UserEmailInvalidOrNonUniqueException | Throwable $e) {
             Log::error($e);
             return $this->redirect('/account/register')

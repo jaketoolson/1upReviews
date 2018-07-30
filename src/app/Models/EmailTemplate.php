@@ -15,7 +15,7 @@ use Html2Text\Html2Text;
 /**
  * @property int id
  * @property int campaign_id
- * @property int tenant_id
+ * @property int organization_id
  * @property string name
  * @property string subject
  * @property string body_html
@@ -31,7 +31,7 @@ class EmailTemplate extends BaseEloquentModel
 
     protected $fillable = [
         'uuid',
-        'tenant_id',
+        'organization_id',
         'name',
         'subject',
         'body_html',
@@ -40,7 +40,7 @@ class EmailTemplate extends BaseEloquentModel
 
     protected $hidden = [
         'id',
-        'tenant_id',
+        'organization_id',
     ];
 
     public static function boot(): void

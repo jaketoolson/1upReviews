@@ -16,17 +16,22 @@ class CreateCampaignEmailTbl extends Migration
         Schema::create('campaigns', function (Blueprint $table){
             $table->bigIncrements('id');
             $table->string('uuid');
-            $table->bigInteger('tenant_id')->unsigned();
+            $table->bigInteger('organization_id')->unsigned();
             $table->string('name');
             $table->string('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('organization_id')
+                ->references('id')
+                ->on('organizations')
+                ->onDelete('cascade');
         });
 
         Schema::create('campaign_emails', function (Blueprint $table){
             $table->bigIncrements('id');
             $table->string('uuid');
-            $table->bigInteger('tenant_id', false, true);
+            $table->bigInteger('organization_id', false, true);
             $table->bigInteger('client_id')->unsigned();
             $table->bigInteger('email_template_id')->unsigned();
             $table->bigInteger('sent_by')->unsigned();
@@ -40,6 +45,11 @@ class CreateCampaignEmailTbl extends Migration
             $table->dateTime('resent_at')->nullable()->default(null);
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('organization_id')
+                ->references('id')
+                ->on('organizations')
+                ->onDelete('cascade');
         });
 
         DB::statement('ALTER TABLE campaign_emails AUTO_INCREMENT=1100000');
