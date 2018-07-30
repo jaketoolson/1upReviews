@@ -11,7 +11,7 @@
                 Change Password
             </a>
             <a href="#" class="list-group-item ">
-                Team Settings
+                Organization Settings
             </a>
         </div>
     </div>

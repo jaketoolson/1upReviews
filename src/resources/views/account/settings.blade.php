@@ -1,4 +1,4 @@
-@extends('layouts.withsubmenu')
+@extends('layouts.account_withsubmenu')
 
 @section('sub-content')
 

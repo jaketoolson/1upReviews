@@ -6,9 +6,13 @@
 namespace OneUpReviews\Services;
 
 use DB;
+use Illuminate\Contracts\Hashing\Hasher;
+use Illuminate\Hashing\HashManager;
+use Illuminate\Support\Facades\Hash;
 use OneUpReviews\Events\OrganizationCreatedEvent;
 use OneUpReviews\Events\OrganizationCreatingEvent;
 use OneUpReviews\Exceptions\UserEmailInvalidOrNonUniqueException;
+use OneUpReviews\Foundation\Exceptions\HashedPasswordsDoNotMatchException;
 use OneUpReviews\Models\Organization;
 use OneUpReviews\Models\OrganizationParams;
 use OneUpReviews\Models\User;
@@ -17,6 +21,13 @@ use Throwable;
 
 class AccountService
 {
+    private $hashManager;
+
+    public function __construct(Hasher $hashManager)
+    {
+        $this->hashManager = $hashManager;
+    }
+
     /**
      * @param OrganizationParams $organizationParams
      * @param UserParams $userParams
@@ -71,6 +82,26 @@ class AccountService
         ]);
     }
 
+    /**
+     * @param int $userId
+     * @param string $currentPassword
+     * @param string $newPassword
+     * @return bool
+     * @throws HashedPasswordsDoNotMatchException
+     */
+    public function updatePassword(int $userId, string $currentPassword, string $newPassword): bool
+    {
+        if (! $this->passwordMatchesExistingForUser($userId, $currentPassword)) {
+            throw new HashedPasswordsDoNotMatchException('Passwords do not match');
+        }
+
+        $user = User::findOrFail($userId);
+
+        return $user->update([
+            'password' => bcrypt($newPassword)
+        ]);
+    }
+
     private function makeUser(int $organizationId, UserParams $userParams): User
     {
         return new User([
@@ -101,5 +132,12 @@ class AccountService
         }
 
         return $this->checkIfEmailAlreadyExists($email);
+    }
+
+    private function passwordMatchesExistingForUser(int $userId, string $password): bool
+    {
+        $user = User::findOrFail($userId);
+
+        return $this->hashManager->check($password, $user->password);
     }
 }
