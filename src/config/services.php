@@ -34,7 +34,7 @@ return [
     ],
 
     'stripe' => [
-        'model' => OneUpReviews\Models\User::class,
+        'model' => OneUpReviews\Models\Tenant::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],

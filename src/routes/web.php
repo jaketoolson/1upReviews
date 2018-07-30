@@ -4,9 +4,12 @@ Route::get('/', function () {
     return view('layouts.main');
 });
 
-Route::get('/auth/login', 'Auth\LoginController@index');
-Route::post('/auth/login', 'Auth\LoginController@login');
-Route::post('/auth/logout', 'Auth\LoginController@logout');
+Route::get('/account/login', 'Account\LoginController@index');
+Route::post('/account/login', 'Account\LoginController@login');
+Route::post('/account/logout', 'Account\LoginController@logout');
+
+Route::get('/account/register', 'Account\RegisterController@index');
+Route::post('/account/register', 'Account\RegisterController@store');
 
 Route::get('/emails/templates', 'EmailTemplateController@index');
 Route::get('/emails/templates/create', 'EmailTemplateController@create');

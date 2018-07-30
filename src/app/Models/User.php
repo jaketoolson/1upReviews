@@ -38,6 +38,7 @@ class User extends BaseEloquentModel implements
 
     protected $fillable = [
         'uuid',
+        'tenant_id',
         'first_name',
         'last_name',
         'email',

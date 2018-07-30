@@ -97,7 +97,7 @@
                         <i class="dripicons-power"></i> <span>Logout</span>
                     </a>
 
-                    <form id="frm-logout" action="/auth/logout" method="POST" style="display: none">
+                    <form id="frm-logout" action="/account/logout" method="POST" style="display: none">
                         {{csrf_field()}}
                     </form>
 

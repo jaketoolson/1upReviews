@@ -3,7 +3,7 @@
  * Copyright (c) 2018. Jake Toolson
  */
 
-namespace OneUpReviews\Http\Controllers\Web\Auth;
+namespace OneUpReviews\Http\Controllers\Web\Account;
 
 use OneUpReviews\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -13,7 +13,7 @@ class LoginController extends Controller
 {
     public function index(): Response
     {
-        return $this->view('auth.login');
+        return $this->view('account.login');
     }
 
     public function login(Request $request): Response
@@ -21,7 +21,7 @@ class LoginController extends Controller
         $credentials = $request->only(['email', 'password']);
 
         if (! auth()->attempt($credentials)) {
-            return $this->redirect('/auth/login');
+            return $this->redirect('/account/login');
         }
 
         return $this->redirect('/');
@@ -33,6 +33,6 @@ class LoginController extends Controller
 
         $request->session()->invalidate();
 
-        return $this->redirect('/auth/login');
+        return $this->redirect('/account/login');
     }
 }

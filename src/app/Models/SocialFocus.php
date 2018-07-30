@@ -6,7 +6,6 @@
 namespace OneUpReviews\Models;
 
 use OneUpReviews\Models\Traits\Uuidable;
-use Venturecraft\Revisionable\RevisionableTrait;
 
 /**
  * @property string name
@@ -15,7 +14,7 @@ use Venturecraft\Revisionable\RevisionableTrait;
  */
 class SocialFocus extends BaseEloquentModel
 {
-   use RevisionableTrait, Uuidable;
+   use Uuidable;
 
    protected $table = 'social_focus';
 

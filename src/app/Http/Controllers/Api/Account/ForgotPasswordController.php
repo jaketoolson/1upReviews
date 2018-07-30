@@ -3,7 +3,7 @@
  * Copyright (c) 2018. Jake Toolson
  */
 
-namespace OneUpReviews\Http\Controllers\Api\Auth;
+namespace OneUpReviews\Http\Controllers\Api\Account;
 
 use OneUpReviews\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;

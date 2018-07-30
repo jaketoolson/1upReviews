@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Laravel\Cashier\Billable;
 use OneUpReviews\Models\Traits\Uuidable;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -17,6 +18,10 @@ use Illuminate\Database\Eloquent\Collection;
  * @property int social_focus_id
  * @property string name
  * @property int email_campaign_id
+ * @property string|null stripe_id
+ * @property string|null card_brand
+ * @property int|null card_last_four
+ * @property string|null trial_ends_at
  *
  * @property SocialFocus socialFocus
  * @property TenantMeta meta
@@ -26,13 +31,20 @@ use Illuminate\Database\Eloquent\Collection;
  */
 class Tenant extends BaseEloquentModel
 {
-    use Uuidable;
+    use Billable, Uuidable;
 
     protected $fillable = [
         'uuid',
         'name',
         'social_focus_id',
         'email_campaign_id',
+    ];
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+        'trial_ends_at',
     ];
 
     public static function boot(): void
