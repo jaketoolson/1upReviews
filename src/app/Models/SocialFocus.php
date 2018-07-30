@@ -18,22 +18,14 @@ class SocialFocus extends BaseEloquentModel
 
    protected $table = 'social_focus';
 
-   protected $appends = [
-       'friendly_name',
-   ];
-
    protected $fillable = [
        'uuid',
        'name',
-       'order'
+       'order',
+       'friendly_name',
    ];
 
    protected $hidden = [
        'id',
    ];
-
-    public function getFriendlyNameAttribute(): string
-    {
-        return ucfirst($this->name);
-    }
 }

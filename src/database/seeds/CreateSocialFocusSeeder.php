@@ -10,18 +10,19 @@ class CreateSocialFocusSeeder extends Seeder
     public function run()
     {
         $focii = [
-            'google',
-            'twitter',
-            'facebook',
-            'youtube',
-            'yelp',
-            'linkedin',
-            'yahoo',
+            'google' => 'Google',
+            'twitter' => 'Twitter',
+            'facebook' => 'Facebook',
+            'youtube' => 'YouTube',
+            'yelp' => 'Yelp',
+            'linkedin' => 'LinkedIn',
+            'yahoo' => 'Yahoo',
         ];
 
-        foreach ($focii as $focus) {
+        foreach ($focii as $focusName => $friendlyName) {
             \OneUpReviews\Models\SocialFocus::create([
-                'name' => $focus,
+                'name' => $focusName,
+                'friendly_name' => $friendlyName
             ]);
         }
     }

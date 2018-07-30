@@ -17,6 +17,7 @@ class CreateSocialFocus extends Migration
             $table->increments('id');
             $table->binary('uuid');
             $table->string('name');
+            $table->string('friendly_name');
             $table->tinyInteger('display_order')->default(0);
             $table->timestamps();
         });
