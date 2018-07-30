@@ -9,7 +9,7 @@ use OneUpReviews\Events\TenantCreatingEvent;
 
 class SetTenantToGenericTrial
 {
-    public function handle(TenantCreatingEvent $tenantCreatingEvent)
+    public function handle(TenantCreatingEvent $tenantCreatingEvent): void
     {
         $tenantCreatingEvent->getTenant()->trial_ends_at = now()->addDays(10);
     }

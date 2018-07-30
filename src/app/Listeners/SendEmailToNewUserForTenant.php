@@ -6,7 +6,6 @@
 namespace OneUpReviews\Listeners;
 
 use Illuminate\Support\Facades\Mail;
-use OneUpReviews\Libraries\Keen\Keen;
 use OneUpReviews\Events\TenantAddedUserEvent;
 use OneUpReviews\Mail\WelcomeTenantInvitedUser;
 

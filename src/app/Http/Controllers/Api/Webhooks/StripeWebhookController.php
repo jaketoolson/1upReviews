@@ -31,8 +31,7 @@ class StripeWebhookController extends Controller
                 config('services.stripe.webhook.secret')
             );
         } catch (UnexpectedValueException | SignatureVerification $e) {
-            http_response_code(400);
-            exit();
+            return $this->emptyResponse(400);
         }
 
         $payload = json_decode($payload, true);
@@ -86,8 +85,8 @@ class StripeWebhookController extends Controller
         return getenv('CASHIER_ENV') === 'testing';
     }
 
-    public function emptyResponse(): Response
+    public function emptyResponse(int $status = 200): Response
     {
-        return new Response;
+        return new Response('', $status);
     }
 }
