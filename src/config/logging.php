@@ -4,6 +4,9 @@ use Monolog\Handler\StreamHandler;
 
 return [
 
+    // Enable/disable query logging.
+    'queries' => env('LOG_QUERIES', false),
+
     /*
     |--------------------------------------------------------------------------
     | Default Log Channel

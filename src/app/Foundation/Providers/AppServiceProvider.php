@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (env('LOG_QUERIES', false) === true) {
+        if (config('logging.queries') === true) {
             DB::listen(function($query) {
                 // Iterate over all the bindings and parse them to correct string values in order to generate
                 // a complete raw sql query.
