@@ -4,7 +4,7 @@
             <ul class="metismenu" id="side-menu">
                 <li class="menu-title">Navigation</li>
                 <li>
-                    <a href="/">
+                    <a href="/account/dashboard">
                         <i class="mdi mdi-view-dashboard"></i> <span> Dashboard </span>
                     </a>
                 </li>

@@ -40,7 +40,7 @@ class RegisterController extends Controller
         );
 
         try {
-            $this->accountService->registerTenantAndUserAccount($organizationParams, $userParams);
+            $this->accountService->registerOrganizationAndUserAccount($organizationParams, $userParams);
         } catch (UserEmailInvalidOrNonUniqueException | Throwable $e) {
             Log::error($e);
             return $this->redirect('/account/register')

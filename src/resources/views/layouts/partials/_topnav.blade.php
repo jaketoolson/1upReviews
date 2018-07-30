@@ -73,7 +73,7 @@
                     </a>
 
                     <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                    <a href="/account/settings" class="dropdown-item notify-item">
                         <i class="dripicons-gear"></i> <span>Settings</span>
                     </a>
 

@@ -4,8 +4,11 @@
 
     <div class="inbox-leftbar">
         <div class="mail-list">
-            <a href="#" class="list-group-item ">
+            <a href="/account/settings" class="list-group-item ">
                 Profile Settings
+            </a>
+            <a href="/account/password" class="list-group-item ">
+                Change Password
             </a>
             <a href="#" class="list-group-item ">
                 Team Settings
@@ -14,9 +17,8 @@
     </div>
 
     <div class="inbox-rightbar">
-        Hello
+        @yield('sub-content')
     </div>
-
 
     <div class="clearfix"></div>
 

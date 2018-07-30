@@ -9,7 +9,8 @@ Route::post('/account/register', 'Account\RegisterController@store');
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/', 'HomeController@index');
     Route::get('/account/dashboard', 'Account\DashboardController@index');
-    Route::get('/account/profile', 'Account\ProfileController@index');
+    Route::get('/account/settings', 'Account\SettingsController@index');
+    Route::patch('/account/settings', 'Account\SettingsController@update');
     Route::post('/account/logout', 'Account\LoginController@logout');
 
     Route::get('/emails/templates', 'EmailTemplateController@index');

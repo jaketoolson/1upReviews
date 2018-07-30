@@ -24,7 +24,7 @@ class AccountService
      * @throws UserEmailInvalidOrNonUniqueException
      * @throws Throwable
      */
-    public function registerTenantAndUserAccount(OrganizationParams $organizationParams, UserParams $userParams): User
+    public function registerOrganizationAndUserAccount(OrganizationParams $organizationParams, UserParams $userParams): User
     {
         if (! $this->checkIfEmailValidAndUnique($userParams->getEmailAddress())) {
             throw new UserEmailInvalidOrNonUniqueException('Invalid email');
@@ -48,6 +48,29 @@ class AccountService
         });
     }
 
+    /**
+     * @param int $userId
+     * @param string $newFirstName
+     * @param string $newLastName
+     * @param string $newEmailAddress
+     * @return bool
+     * @throws UserEmailInvalidOrNonUniqueException
+     */
+    public function updateAccount(int $userId, string $newFirstName, string $newLastName, string $newEmailAddress): bool
+    {
+        if (! $this->checkIfEmailValid($newEmailAddress)) {
+            throw new UserEmailInvalidOrNonUniqueException('Invalid email');
+        }
+
+        $user = User::findOrFail($userId);
+
+        return $user->update([
+            'first_name' => $newFirstName,
+            'last_name' => $newLastName,
+            'email' => $newEmailAddress
+        ]);
+    }
+
     private function makeUser(int $organizationId, UserParams $userParams): User
     {
         return new User([
@@ -59,15 +82,24 @@ class AccountService
         ]);
     }
 
+    private function checkIfEmailValid(string $email): bool
+    {
+        return filter_var($email, FILTER_VALIDATE_EMAIL);
+    }
+
+    private function checkIfEmailAlreadyExists(string $email): bool
+    {
+        $exists = User::where('email', $email)->first();
+
+        return $exists ? true : false;
+    }
+
     private function checkIfEmailValidAndUnique(string $email): bool
     {
-        $valid = filter_var($email, FILTER_VALIDATE_EMAIL);
-        if (! $valid) {
+        if (! $this->checkIfEmailValid($email)) {
             return false;
         }
 
-        $exists = User::where('email', $email)->first();
-
-        return $exists ? false : true;
+        return $this->checkIfEmailAlreadyExists($email);
     }
 }
