@@ -24,7 +24,7 @@ class PostmarkWebhookController extends Controller
         $this->campaignEmailActivityService = $campaignEmailActivityService;
     }
 
-    public function store(PostmarkWebhookRequest $request)
+    public function handleWebhook(PostmarkWebhookRequest $request)
     {
         $content = $request->all();
         if ($request->emailTypeBounced()) {

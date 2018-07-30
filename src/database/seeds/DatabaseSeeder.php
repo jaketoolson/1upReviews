@@ -20,7 +20,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call(CreateAdminData::class);
+         $this->call([
+             CreateAdminData::class,
+             CreateStripePlans::class,
+         ]);
     }
 
     /**
@@ -28,12 +31,18 @@ class DatabaseSeeder extends Seeder
      */
     public function call($class, $silent = false): void
     {
-        if (!empty($class) && !in_array($class, $this->seedsRan, true)) {
-            parent::call($class, $silent);
+        if (!is_array($class)) {
+            $class = [$class];
+        }
 
-            DB::table($this->table)->insert(['seed_name' => $class]);
-        } else {
-            $this->command->getOutput()->writeln("<info>Seed already run, skipping:</info> $class");
+        foreach ($class as $seed) {
+            if (!in_array($seed, $this->seedsRan, true)) {
+                parent::call($seed, $silent);
+
+                DB::table($this->table)->insert(['seed_name' => $seed]);
+            } else {
+                $this->command->getOutput()->writeln("<info>Seed already run, skipping:</info> $seed");
+            }
         }
     }
 

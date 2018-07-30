@@ -25,6 +25,12 @@ Route::get('/clients', 'ClientController@index');
 Route::get('/clients/create', 'ClientController@create');
 Route::post('/clients', 'ClientController@store');
 
+Route::get('/test', function(){
+   $tenant = \OneUpReviews\Models\Tenant::first();
+
+   $tenant->newSubscription()->create();
+});
+
 
 // TODO: Uncomment when front-end is serving pages.
 //Route::get('{any}', function () {

@@ -5,8 +5,8 @@
 
 namespace OneUpReviews\Http\Controllers\Web\Account;
 
-use OneUpReviews\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use OneUpReviews\Http\Controllers\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
 class LoginController extends Controller
