@@ -20,8 +20,12 @@ Route::group(['middleware' => 'auth'], function(){
     Route::patch('/account/password', 'Account\PasswordController@update');
 
     // Organization settings
-    Route::get('/account/organization/settings', 'Account\OrganizationSettingsController@index');
-    Route::patch('/account/organization/settings', 'Account\OrganizationSettingsController@update');
+    Route::get('/account/organization/settings', 'Account\Organization\SettingsController@index');
+    Route::patch('/account/organization/settings', 'Account\Organization\SettingsController@update');
+
+    // Organization Card
+    Route::get('/account/organization/card', 'Account\Organization\CardController@index');
+    Route::post('/account/organization/card', 'Account\Organization\CardController@store');
 
     Route::get('/emails/templates', 'EmailTemplateController@index');
     Route::get('/emails/templates/create', 'EmailTemplateController@create');

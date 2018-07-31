@@ -3,7 +3,7 @@
  * Copyright (c) 2018. Jake Toolson
  */
 
-namespace OneUpReviews\Http\Controllers\Web\Account;
+namespace OneUpReviews\Http\Controllers\Web\Account\Organization;
 
 use Illuminate\Support\Facades\Auth;
 use OneUpReviews\Http\Controllers\Controller;
@@ -11,7 +11,7 @@ use OneUpReviews\Http\Requests\OrganizationSettingsUpdateRequest;
 use OneUpReviews\Services\AccountService;
 use OneUpReviews\Services\SocialFocusService;
 
-class OrganizationSettingsController extends Controller
+class SettingsController extends Controller
 {
     /**
      * @var AccountService
