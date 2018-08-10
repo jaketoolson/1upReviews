@@ -91,16 +91,16 @@
              IN THE SOFTWARE.
              */
             (function () {
-                var $,
+                let $,
                     __indexOf = [].indexOf || function (item) {
-                        for (var i = 0, l = this.length; i < l; i++) {
+                        for (let i = 0, l = this.length; i < l; i++) {
                             if (i in this && this[i] === item) return i;
                         }
                         return -1;
                     };
                 $ = jQuery;
                 $.fn.validateCreditCard = function (callback, options) {
-                    var bind, card, card_type, card_types, get_card_type, is_valid_length, is_valid_luhn, normalize, validate, validate_number, _i, _len, _ref;
+                    let bind, card, card_type, card_types, get_card_type, is_valid_length, is_valid_luhn, normalize, validate, validate_number, _i, _len, _ref;
                     card_types = [
                         {
                             name: 'american_express',
@@ -159,7 +159,7 @@
                     }
                     if (options.accept == null) {
                         options.accept = (function () {
-                            var _i, _len, _results;
+                            let _i, _len, _results;
                             _results = [];
                             for (_i = 0, _len = card_types.length; _i < _len; _i++) {
                                 card = card_types[_i];
@@ -172,7 +172,7 @@
                     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
                         card_type = _ref[_i];
                         if (__indexOf.call((function () {
-                            var _j, _len1, _results;
+                            let _j, _len1, _results;
                             _results = [];
                             for (_j = 0, _len1 = card_types.length; _j < _len1; _j++) {
                                 card = card_types[_j];
@@ -184,9 +184,9 @@
                         }
                     }
                     get_card_type = function (number) {
-                        var _j, _len1, _ref1;
+                        let _j, _len1, _ref1;
                         _ref1 = (function () {
-                            var _k, _len1, _ref1, _results;
+                            let _k, _len1, _ref1, _results;
                             _results = [];
                             for (_k = 0, _len1 = card_types.length; _k < _len1; _k++) {
                                 card = card_types[_k];
@@ -205,7 +205,7 @@
                         return null;
                     };
                     is_valid_luhn = function (number) {
-                        var digit, n, sum, _j, _len1, _ref1;
+                        let digit, n, sum, _j, _len1, _ref1;
                         sum = 0;
                         _ref1 = number.split('').reverse();
                         for (n = _j = 0, _len1 = _ref1.length; _j < _len1; n = ++_j) {
@@ -225,12 +225,12 @@
                         return sum % 10 === 0;
                     };
                     is_valid_length = function (number, card_type) {
-                        var _ref1;
+                        let _ref1;
                         return _ref1 = number.length, __indexOf.call(card_type.valid_length, _ref1) >= 0;
                     };
                     validate_number = (function (_this) {
                         return function (number) {
-                            var length_valid, luhn_valid;
+                            let length_valid, luhn_valid;
                             card_type = get_card_type(number);
                             luhn_valid = false;
                             length_valid = false;
@@ -248,7 +248,7 @@
                     })(this);
                     validate = (function (_this) {
                         return function () {
-                            var number;
+                            let number;
                             number = normalize($(_this).val());
                             return validate_number(number);
                         };
@@ -275,14 +275,13 @@
                 };
             }).call(this);
             $(function () {
-                var ccNumberEl = $('#form_card_no');
-                var ccTypes = $('.cc_type');
-                var cardTypeFound = false;
+                let ccNumberEl = $('#form_card_no');
+                let ccTypes = $('.cc_type');
+                let cardTypeFound = false;
                 ccNumberEl.on('focus', function () {
                     ccNumberEl.validateCreditCard(function (result) {
                         if (result.card_type) {
-                            var cardImg = $('#cc_' + result.card_type.name);
-                            console.log(result.card_type.name);
+                            let cardImg = $('#cc_' + result.card_type.name);
                             if (cardImg && cardImg.length) {
                                 cardImg.css({opacity: {{ $opaques['active'] }}});
                                 cardTypeFound = true;

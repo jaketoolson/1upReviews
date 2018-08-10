@@ -6,6 +6,7 @@
 namespace OneUpReviews\Services;
 
 use Laravel\Cashier\Subscription;
+use OneUpReviews\Events\SubscriptionCancelledEvent;
 use OneUpReviews\Exceptions\AlreadySubscribedException;
 use OneUpReviews\Exceptions\CardNotOnFileException;
 use OneUpReviews\Models\CreditCardParams;
@@ -72,5 +73,6 @@ class SubscriptionService
     public function cancelSubscription(Organization $organization)
     {
         // $organization->subscription('')->cancelNow();
+        event(new SubscriptionCancelledEvent($organization->id));
     }
 }

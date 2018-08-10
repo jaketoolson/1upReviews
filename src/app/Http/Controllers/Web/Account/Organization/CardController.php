@@ -9,10 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use OneUpReviews\Http\Controllers\Controller;
 use OneUpReviews\Http\Requests\OrganizationCardRequest;
-use OneUpReviews\Http\Requests\OrganizationSettingsUpdateRequest;
 use OneUpReviews\Models\CreditCardParams;
-use OneUpReviews\Services\AccountService;
-use OneUpReviews\Services\SocialFocusService;
 use OneUpReviews\Services\SubscriptionService;
 
 class CardController extends Controller

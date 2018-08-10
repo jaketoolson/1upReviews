@@ -25,10 +25,10 @@
             <a href="/account/organization/settings" class="list-group-item ">
                 Settings
             </a>
-            <a href="/account/organization/settings" class="list-group-item ">
+            <a href="/account/organization/subscription" class="list-group-item ">
                 Subscription
             </a>
-            <a href="/account/password" class="list-group-item ">
+            <a href="/account/organization/card" class="list-group-item ">
                 Credit Card
             </a>
             <a href="#" class="list-group-item ">
