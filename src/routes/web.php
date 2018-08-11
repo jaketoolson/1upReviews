@@ -28,6 +28,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/account/organization/card', 'Account\Organization\CardController@store');
 
     Route::get('/account/organization/subscription', 'Account\Organization\SubscriptionController@index');
+    Route::post('/account/organization/subscription', 'Account\Organization\SubscriptionController@store');
     Route::delete('/account/organization/subscription', 'Account\Organization\SubscriptionController@destroy');
 
     Route::get('/emails/templates', 'EmailTemplateController@index');

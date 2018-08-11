@@ -7,6 +7,7 @@ namespace OneUpReviews\Services;
 
 use Laravel\Cashier\Subscription;
 use OneUpReviews\Events\SubscriptionCancelledEvent;
+use OneUpReviews\Events\SubscriptionCreatedEvent;
 use OneUpReviews\Exceptions\AlreadySubscribedException;
 use OneUpReviews\Exceptions\CardNotOnFileException;
 use OneUpReviews\Models\CreditCardParams;
@@ -32,14 +33,20 @@ class SubscriptionService
             throw new CardNotOnFileException("Organization {$organization->id} has no card on file.");
         }
 
-        return $organization->newSubscription('main', Subscribables::MONTHLY_PRICING_PLAN)->create();
+        $subscription = $organization
+            ->newSubscription('main', Subscribables::MONTHLY_PRICING_PLAN)
+            ->create();
+
+        event(new SubscriptionCreatedEvent($organization->id));
+
+        return $subscription;
     }
 
     public function addCard(Organization $organization, CreditCardParams $creditCardParams): Organization
     {
+        $number = $creditCardParams->getNumber();
         $month = $creditCardParams->getExpirationMonth();
         $year = $creditCardParams->getExpirationYear();
-        $number = $creditCardParams->getNumber();
         $cvc = $creditCardParams->getCVC();
 
         // If organization already has a stripe account associated to them,
@@ -72,7 +79,8 @@ class SubscriptionService
 
     public function cancelSubscription(Organization $organization)
     {
-        // $organization->subscription('')->cancelNow();
+        $organization->subscription()->cancel();
+
         event(new SubscriptionCancelledEvent($organization->id));
     }
 }
